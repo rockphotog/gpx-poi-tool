@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd" version="1.1" creator="poi-tool-garmin-optimized">
+    <metadata>
+        <name>POI Collection</name>
+        <desc>Garmin-optimized POI collection with 34 waypoints</desc>
+    </metadata>
+    <wpt lat="61.63690000" lon="8.41310000">
+        <name>Gjendesheim</name>
+        <desc>DNT cabin at the start of Besseggen ridge hike. Staffed cabin with restaurant and accommodation. ...</desc>
+        <ele>995.0</ele>
+        <link href="https://ut.no/hytte/100002" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.68330000" lon="8.61670000">
+        <name>Glitterheim</name>
+        <desc>DNT staffed cabin beneath Glittertind, Norway's second highest peak. Restaurant and accommodation...</desc>
+        <ele>1348.0</ele>
+        <link href="https://ut.no/hytte/100003" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.64580000" lon="8.58420000">
+        <name>Memurubu</name>
+        <desc>DNT staffed cabin on the shore of Lake Gjende. Popular stop on the Besseggen hike.</desc>
+        <ele>1016.0</ele>
+        <link href="https://ut.no/hytte/100004" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.56810000" lon="8.62580000">
+        <name>Olavsbu</name>
+        <desc>Self-service DNT cabin in Jotunheimen. Key location for accessing Falketind and other peaks. [Sym...</desc>
+        <ele>1440.0</ele>
+        <link href="https://ut.no/hytte/100005" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.53750000" lon="8.51670000">
+        <name>Fondsbu</name>
+        <desc>DNT staffed cabin at the western end of Lake Bygdin. Historic lodge with restaurant.</desc>
+        <ele>1065.0</ele>
+        <link href="https://ut.no/hytte/100006" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.48810000" lon="8.74560000">
+        <name>Turtagrø Hotel</name>
+        <desc>DNT hotel in Jotunheimen, base for climbing Skagastølstind and Store Styggedalstind. [Symbol: Cam...</desc>
+        <ele>884.0</ele>
+        <link href="https://ut.no/hytte/100007" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.58330000" lon="7.16670000">
+        <name>Finse 1222</name>
+        <desc>DNT staffed cabin at Finse train station. Gateway to Hardangervidda plateau.</desc>
+        <ele>1222.0</ele>
+        <link href="https://ut.no/hytte/100008" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.63890000" lon="7.39170000">
+        <name>Krækkja</name>
+        <desc>Self-service DNT cabin on Hardangervidda. Popular stop on the Finse-Geilo traverse. [Symbol: Camp...</desc>
+        <ele>1200.0</ele>
+        <link href="https://ut.no/hytte/100009" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.53420000" lon="8.20580000">
+        <name>Geiterygghytta</name>
+        <desc>DNT staffed cabin on Hardangervidda with restaurant. Great views over the plateau.</desc>
+        <ele>1157.0</ele>
+        <link href="https://ut.no/hytte/100010" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.34580000" lon="7.98330000">
+        <name>Hadlaskard</name>
+        <desc>Self-service DNT cabin on southern Hardangervidda. Remote location with excellent fishing. [Symbo...</desc>
+        <ele>1050.0</ele>
+        <link href="https://ut.no/hytte/100011" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.96670000" lon="9.83330000">
+        <name>Rondvassbu</name>
+        <desc>DNT staffed cabin in Rondane National Park. Access point to Rondslottet peak.</desc>
+        <ele>1165.0</ele>
+        <link href="https://ut.no/hytte/100012" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.88400000" lon="10.01250000">
+        <name>Bjørnhollia</name>
+        <desc>Self-service DNT cabin in Rondane. Popular basecamp for hiking Storronden.</desc>
+        <ele>894.0</ele>
+        <link href="https://ut.no/hytte/101110" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.95830000" lon="9.91670000">
+        <name>Peer Gynt-hytta</name>
+        <desc>Self-service DNT cabin named after the legendary character. Views of Rondslottet.</desc>
+        <ele>1000.0</ele>
+        <link href="https://ut.no/hytte/100013" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.25830000" lon="9.28330000">
+        <name>Snøheim</name>
+        <desc>DNT staffed cabin in Dovrefjell. Base for climbing Snøhetta, the highest peak in the region. [Sym...</desc>
+        <ele>1067.0</ele>
+        <link href="https://ut.no/hytte/100014" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.31670000" lon="9.21670000">
+        <name>Reinheim</name>
+        <desc>Self-service DNT cabin in Dovrefjell. Musk ox observation area nearby.</desc>
+        <ele>1100.0</ele>
+        <link href="https://ut.no/hytte/100015" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.71670000" lon="9.18330000">
+        <name>Gjevilvasshytta</name>
+        <desc>DNT staffed cabin in Trollheimen. Popular base for climbing Blåhø.</desc>
+        <ele>721.0</ele>
+        <link href="https://ut.no/hytte/100016" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.63330000" lon="9.11670000">
+        <name>Jøldalshytta</name>
+        <desc>DNT staffed cabin in Trollheimen. Access to multiple peaks and valleys.</desc>
+        <ele>1000.0</ele>
+        <link href="https://ut.no/hytte/100017" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="68.08330000" lon="13.41670000">
+        <name>Munkebu Hut</name>
+        <desc>Self-service DNT cabin in Lofoten. Spectacular views of Moskenes and the sea.</desc>
+        <ele>200.0</ele>
+        <link href="https://ut.no/hytte/100018" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="68.21670000" lon="13.83330000">
+        <name>Kvalvika Beach Shelter</name>
+        <desc>Open DNT shelter near Kvalvika Beach. Remote beach location with basic facilities.</desc>
+        <ele>50.0</ele>
+        <link href="https://ut.no/hytte/100019" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="69.58330000" lon="20.11670000">
+        <name>Storslett Hytta</name>
+        <desc>Self-service DNT cabin in Lyngen Alps. Alpine environment with skiing and climbing opportunities....</desc>
+        <ele>800.0</ele>
+        <link href="https://ut.no/hytte/100020" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="70.08330000" lon="29.41670000">
+        <name>Treriksrøysa Hut</name>
+        <desc>Self-service DNT cabin near the three-country border (Norway-Finland-Russia). Remote arctic locat...</desc>
+        <ele>450.0</ele>
+        <link href="https://ut.no/hytte/100021" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="66.33330000" lon="13.71670000">
+        <name>Rabothytta</name>
+        <desc>Self-service DNT cabin in Saltfjellet-Svartisen National Park. Access to Svartisen glacier. [Symb...</desc>
+        <ele>750.0</ele>
+        <link href="https://ut.no/hytte/100022" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.21670000" lon="7.18330000">
+        <name>Preikestolen Lodge</name>
+        <desc>DNT lodge near the famous Preikestolen (Pulpit Rock). Modern facilities with restaurant. [Symbol:...</desc>
+        <ele>270.0</ele>
+        <link href="https://ut.no/hytte/100023" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.11670000" lon="7.28330000">
+        <name>Skåla Skyscraper</name>
+        <desc>DNT cabin on Skåla peak. Highest located cabin in Scandinavia with panoramic views. [Symbol: Scen...</desc>
+        <ele>1843.0</ele>
+        <link href="https://ut.no/hytte/100024" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="63.41670000" lon="10.41670000">
+        <name>Vassfjellet Hytta</name>
+        <desc>DNT cabin near Trondheim. Popular for winter activities and cross-country skiing.</desc>
+        <ele>650.0</ele>
+        <link href="https://ut.no/hytte/100025" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.18330000" lon="10.83330000">
+        <name>Kikutstua</name>
+        <desc>DNT cabin in Nordmarka forest near Oslo. Accessible by public transport and popular for day trips...</desc>
+        <ele>417.0</ele>
+        <link href="https://ut.no/hytte/100026" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="59.98330000" lon="10.61670000">
+        <name>Kobberhaughytta</name>
+        <desc>Self-service DNT cabin in Oslomarka. Historic cabin with traditional Norwegian architecture. [Sym...</desc>
+        <ele>350.0</ele>
+        <link href="https://ut.no/hytte/100027" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="58.38330000" lon="6.61670000">
+        <name>Preikestolhytta</name>
+        <desc>DNT cabin serving as basecamp for Preikestolen hike. Modern facilities and restaurant. [Symbol: L...</desc>
+        <ele>270.0</ele>
+        <link href="https://ut.no/hytte/100028" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="59.03330000" lon="7.78330000">
+        <name>Stavali Hytta</name>
+        <desc>Self-service DNT cabin in Setesdal region. Traditional mountain cabin in beautiful valley setting...</desc>
+        <ele>650.0</ele>
+        <link href="https://ut.no/hytte/100029" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.71670000" lon="8.91670000">
+        <name>Leirvassbu</name>
+        <desc>DNT staffed cabin in Jotunheimen. Gateway to Kyrkja peak and Leirvatnet lake.</desc>
+        <ele>1405.0</ele>
+        <link href="https://ut.no/hytte/100030" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.81670000" lon="8.81670000">
+        <name>Spiterstulen</name>
+        <desc>DNT lodge and research station. Base for climbing Galdhøpiggen, Norway's highest peak. [Symbol: L...</desc>
+        <ele>1100.0</ele>
+        <link href="https://ut.no/hytte/100031" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="60.48330000" lon="8.71670000">
+        <name>Haukeliseter</name>
+        <desc>DNT hotel on the historic King's Road. Mountain hotel with restaurant and conference facilities. ...</desc>
+        <ele>988.0</ele>
+        <link href="https://ut.no/hytte/100032" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="61.03330000" lon="8.18330000">
+        <name>Iungsdalshytta</name>
+        <desc>Self-service DNT cabin in beautiful valley setting. Access point to multiple hiking routes. [Symb...</desc>
+        <ele>840.0</ele>
+        <link href="https://ut.no/hytte/100033" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+    <wpt lat="62.58330000" lon="8.08330000">
+        <name>Grotli Høyfjellshotell</name>
+        <desc>DNT mountain hotel at high altitude. Spectacular views and access to Breheimen National Park. [Sy...</desc>
+        <ele>884.0</ele>
+        <link href="https://ut.no/hytte/100034" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+</gpx>
