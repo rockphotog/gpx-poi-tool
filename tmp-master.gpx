@@ -1,6 +1,151 @@
 <?xml version='1.0' encoding='utf-8'?>
 <gpx xmlns:ns0="http://www.topografix.com/GPX/1/1" xmlns:ns1="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="poi-tool">
   <metadata />
+  <wpt lat="61.8840664078091" lon="10.0125026350101">
+    <name>Bjørnhollia</name>
+    <desc />
+    <ele>894.5</ele>
+    <link href="https://ut.no/hytte/101110" />
+    <ns0:extensions>
+      <ns1:betjeningsgrad>B</ns1:betjeningsgrad>
+      <ns1:hytteeier>1</ns1:hytteeier>
+    </ns0:extensions>
+  </wpt>
+  <wpt lat="61.6369" lon="8.4131">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.6833" lon="8.6167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.6458" lon="8.5842">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.5681" lon="8.6258">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.5375" lon="8.5167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.4881" lon="8.7456">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.5833" lon="7.1667">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.6389" lon="7.3917">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.5342" lon="8.2058">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.3458" lon="7.9833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.9667" lon="9.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.9583" lon="9.9167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.2583" lon="9.2833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.3167" lon="9.2167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.7167" lon="9.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.6333" lon="9.1167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="68.0833" lon="13.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="68.2167" lon="13.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="69.5833" lon="20.1167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="70.0833" lon="29.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="66.3333" lon="13.7167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.2167" lon="7.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.1167" lon="7.2833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="63.4167" lon="10.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.1833" lon="10.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="59.9833" lon="10.6167">
+    <name />
+    <desc />
+    <ele>152.0</ele>
+  </wpt>
+  <wpt lat="58.3833" lon="6.6167">
+    <name />
+    <desc />
+    <ele>48.0</ele>
+  </wpt>
+  <wpt lat="59.0333" lon="7.7833">
+    <name />
+    <desc />
+    <ele>888.0</ele>
+  </wpt>
+  <wpt lat="61.7167" lon="8.9167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.8167" lon="8.8167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.4833" lon="8.7167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.0333" lon="8.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.5833" lon="8.0833">
+    <name />
+    <desc />
+  </wpt>
   <wpt lat="61.29734867360884" lon="9.628500565909123">
     <name>Slivasshytta</name>
     <desc />
@@ -59,8 +204,8 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.99750845027341" lon="13.180415968211754">
-    <name>Bernehytta</name>
+  <wpt lat="64.9971094816951" lon="13.181309685778924">
+    <name>Frøyningsheimen</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
@@ -187,8 +332,8 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="60.376327460045154" lon="10.714267470698967">
-    <name>Sagvollstallen</name>
+  <wpt lat="60.375922578950835" lon="10.714526066864853">
+    <name>Kjørestua på Sagvollen</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>D</ns1:betjeningsgrad>
@@ -651,10 +796,10 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="59.70185112570383" lon="10.562506623510963">
-    <name>Badstua</name>
+  <wpt lat="59.70217447082276" lon="10.561605243779882">
+    <name>Eldhuset</name>
     <desc />
-    <ele>24.0</ele>
+    <ele>22.0</ele>
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
       <ns1:hytteeier>2</ns1:hytteeier>
@@ -842,7 +987,7 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="59.09466447675593" lon="10.918195622622743">
+  <wpt lat="59.09428053558968" lon="10.918371822162417">
     <name>Stenhoggerhytta</name>
     <desc />
     <ele>7.0</ele>
@@ -924,15 +1069,7 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="65.08816100077982" lon="13.424133739860014">
-    <name>Skogstua</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>3</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="65.08741305579315" lon="13.42439164807358">
+  <wpt lat="65.08769353516315" lon="13.424294932493494">
     <name>Namskrokhytta</name>
     <desc />
     <ns0:extensions>
@@ -1149,8 +1286,8 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.91921795875571" lon="13.230493228062565">
-    <name>Sandåstua</name>
+  <wpt lat="64.91881154247736" lon="13.230239149395308">
+    <name>Mattisstua</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
@@ -2005,14 +2142,6 @@
     <ns0:extensions>
       <ns1:betjeningsgrad>R</ns1:betjeningsgrad>
       <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="60.37567965029424" lon="10.714681224564385">
-    <name>Kjørestua på Sagvollen</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
   <wpt lat="62.950411651721964" lon="7.246473584432361">
@@ -4284,8 +4413,8 @@
       <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.06325484637416" lon="12.896614832799129">
-    <name>Holden fjellgård (Bekkstugu)</name>
+  <wpt lat="64.06329111696718" lon="12.89542606023402">
+    <name>Holden fjellgård (Rødstua/Buret)</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>S</ns1:betjeningsgrad>
@@ -5451,7 +5580,7 @@
       <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="63.99548090707439" lon="12.312985420414009">
+  <wpt lat="63.9953993204637" lon="12.311916928494009">
     <name>Setertjønnhytta</name>
     <desc />
     <ns0:extensions>
@@ -5908,7 +6037,7 @@
       <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="59.1163890798817" lon="6.87520358385225">
+  <wpt lat="59.1159301892016" lon="6.875339135414821">
     <name>Heiberghytta Grautheller</name>
     <desc />
     <ele>756.0</ele>
@@ -6653,8 +6782,8 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="61.29100807631907" lon="9.362263693023923">
-    <name>Vesterheimsbua</name>
+  <wpt lat="61.291339001248616" lon="9.36233989744478">
+    <name>Steinbua i Vesterheim</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
@@ -6674,14 +6803,6 @@
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>3</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="61.29153755620634" lon="9.362385620097294">
-    <name>Steinbua i Vesterheim</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>R</ns1:betjeningsgrad>
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
@@ -7661,14 +7782,6 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.91856769271034" lon="13.230086702194953">
-    <name>Mattisstua</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>3</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="61.24134202387314" lon="9.599130297450596">
     <name>Liumseterhytta</name>
     <desc />
@@ -7725,14 +7838,6 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.99687010054811" lon="13.181845916319226">
-    <name>Frøyningsheimen</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>3</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="61.744114927771385" lon="10.35263112988567">
     <name>Åsbua</name>
     <desc />
@@ -7774,7 +7879,7 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="68.50250120246349" lon="18.07893337528048">
+  <wpt lat="68.5020474621671" lon="18.07951414068243">
     <name>Gamle Holmvassbu</name>
     <desc />
     <ns0:extensions>
@@ -8450,29 +8555,12 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="68.50177521798928" lon="18.0798625999236">
-    <name>Holmvassbu</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="60.199518529548826" lon="12.329354878864866">
     <name>Grasbråtan</name>
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
       <ns1:hytteeier>1</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="59.11565485479354" lon="6.875420466352364">
-    <name>Grautheller</name>
-    <desc />
-    <ele>756.0</ele>
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>4</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
   <wpt lat="66.82045376200442" lon="15.378835678239613">
@@ -8532,7 +8620,7 @@
       <ns1:hytteeier>3</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="64.98970767850635" lon="13.58107254363335">
+  <wpt lat="64.99005118085951" lon="13.5809545433987">
     <name>Børgefjellbua</name>
     <desc />
     <ns0:extensions>
@@ -8669,28 +8757,12 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="63.995350368497284" lon="12.311275833342009">
-    <name />
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>G</ns1:betjeningsgrad>
-      <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="68.40508029713807" lon="17.983020313697978">
     <name />
     <desc />
     <ns0:extensions>
       <ns1:betjeningsgrad>G</ns1:betjeningsgrad>
       <ns1:hytteeier>1</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="64.99025728227141" lon="13.580883743257909">
-    <name>Naustervika</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>G</ns1:betjeningsgrad>
-      <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
   <wpt lat="64.2762375826446" lon="11.440193193629593">
@@ -9127,15 +9199,6 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="59.70236847789412" lon="10.561064415941233">
-    <name>Eldhuset</name>
-    <desc />
-    <ele>22.0</ele>
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="59.62422195571398" lon="5.666040574733982">
     <name>Arquebushytta</name>
     <desc />
@@ -9359,15 +9422,6 @@
   <wpt lat="69.46296110754528" lon="20.047888998932915">
     <name>Lyngsdalshytta</name>
     <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="59.09405017088993" lon="10.91847754188622">
-    <name>Klyven</name>
-    <desc />
-    <ele>7.0</ele>
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
       <ns1:hytteeier>2</ns1:hytteeier>
@@ -10051,14 +10105,6 @@
     <ns0:extensions>
       <ns1:betjeningsgrad>D</ns1:betjeningsgrad>
       <ns1:hytteeier>2</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="61.88406640741221" lon="10.01250263407482">
-    <name>Bjørnhollia</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>B</ns1:betjeningsgrad>
-      <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
   <wpt lat="70.86322986863001" lon="23.322588840602318">
@@ -10754,7 +10800,7 @@
       <ns1:hytteeier>4</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="65.99799521914971" lon="14.477589741402564">
+  <wpt lat="65.99849828195045" lon="14.477183278638847">
     <name>(ny)Balskota/Spjeltfjelldalskøta</name>
     <desc />
     <ns0:extensions>
@@ -10768,14 +10814,6 @@
     <ele>20.0</ele>
     <ns0:extensions>
       <ns1:betjeningsgrad>G</ns1:betjeningsgrad>
-      <ns1:hytteeier>4</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="64.06331287932298" lon="12.894712796694952">
-    <name>Holden fjellgård (Rødstua/Buret)</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
       <ns1:hytteeier>4</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
@@ -11053,14 +11091,6 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="65.99880011963089" lon="14.476939400980617">
-    <name>Spjeltfjelldalskøta</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>G</ns1:betjeningsgrad>
-      <ns1:hytteeier>4</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
   <wpt lat="60.796270807376494" lon="9.303402124998351">
     <name />
     <desc />
@@ -11239,7 +11269,7 @@
       <ns1:hytteeier>2</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
-  <wpt lat="60.02512318882716" lon="10.839244632775237">
+  <wpt lat="60.02466534241138" lon="10.839587593079807">
     <name>Fjellvang</name>
     <desc />
     <ns0:extensions>
@@ -12195,14 +12225,6 @@
     <ns0:extensions>
       <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
       <ns1:hytteeier>4</ns1:hytteeier>
-    </ns0:extensions>
-  </wpt>
-  <wpt lat="60.02439063456192" lon="10.83979336926255">
-    <name>Røverhula</name>
-    <desc />
-    <ns0:extensions>
-      <ns1:betjeningsgrad>U</ns1:betjeningsgrad>
-      <ns1:hytteeier>1</ns1:hytteeier>
     </ns0:extensions>
   </wpt>
   <wpt lat="59.79654348008067" lon="10.120093200192526">
