@@ -39,7 +39,7 @@ python3 poi-tool.py -t gpx/dnt-cabins-norway.gpx --export-kml cabins-google-eart
 
 **Result**: A professionally organized KML file with:
 - 🏠 **DNT Cabins & Lodges** (red lodge icons)
-- 🏔️ **Mountain Peaks** (green triangle icons)  
+- 🏔️ **Mountain Peaks** (green triangle icons)
 - 🎣 **Fishing Spots** (blue fishing icons)
 - 📷 **Scenic Areas** (magenta camera icons)
 - 🏖️ **Beaches** (yellow beach icons)

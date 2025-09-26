@@ -1,142 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="poi-tool">
   <metadata />
-  <wpt lat="61.6369" lon="8.4131">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.6833" lon="8.6167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.6458" lon="8.5842">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.5681" lon="8.6258">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.5375" lon="8.5167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.4881" lon="8.7456">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.5833" lon="7.1667">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.6389" lon="7.3917">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.5342" lon="8.2058">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.3458" lon="7.9833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.9667" lon="9.8333">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.884049805757606" lon="10.012501976023755">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.9583" lon="9.9167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.2583" lon="9.2833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.3167" lon="9.2167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.7167" lon="9.1833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.6333" lon="9.1167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="68.0833" lon="13.4167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="68.2167" lon="13.8333">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="69.5833" lon="20.1167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="70.0833" lon="29.4167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="66.3333" lon="13.7167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.2167" lon="7.1833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.1167" lon="7.2833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="63.4167" lon="10.4167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.1833" lon="10.8333">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="59.9833" lon="10.6167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="58.3833" lon="6.6167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="59.0333" lon="7.7833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.7167" lon="8.9167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.8167" lon="8.8167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="60.4833" lon="8.7167">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="61.0333" lon="8.1833">
-    <name />
-    <desc />
-  </wpt>
-  <wpt lat="62.5833" lon="8.0833">
-    <name />
-    <desc />
-  </wpt>
   <wpt lat="61.29734867360884" lon="9.628500565909123">
     <name />
     <desc />
@@ -5001,6 +4865,10 @@
     <name />
     <desc />
   </wpt>
+  <wpt lat="61.88403320370611" lon="10.01250131703741">
+    <name />
+    <desc />
+  </wpt>
   <wpt lat="70.86322986863001" lon="23.322588840602318">
     <name />
     <desc />
@@ -6262,6 +6130,138 @@
     <desc />
   </wpt>
   <wpt lat="60.467683919737105" lon="11.120629526735058">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.6369" lon="8.4131">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.6833" lon="8.6167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.6458" lon="8.5842">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.5681" lon="8.6258">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.5375" lon="8.5167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.4881" lon="8.7456">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.5833" lon="7.1667">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.6389" lon="7.3917">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.5342" lon="8.2058">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.3458" lon="7.9833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.9667" lon="9.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.9583" lon="9.9167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.2583" lon="9.2833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.3167" lon="9.2167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.7167" lon="9.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.6333" lon="9.1167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="68.0833" lon="13.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="68.2167" lon="13.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="69.5833" lon="20.1167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="70.0833" lon="29.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="66.3333" lon="13.7167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.2167" lon="7.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.1167" lon="7.2833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="63.4167" lon="10.4167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.1833" lon="10.8333">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="59.9833" lon="10.6167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="58.3833" lon="6.6167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="59.0333" lon="7.7833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.7167" lon="8.9167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.8167" lon="8.8167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="60.4833" lon="8.7167">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="61.0333" lon="8.1833">
+    <name />
+    <desc />
+  </wpt>
+  <wpt lat="62.5833" lon="8.0833">
     <name />
     <desc />
   </wpt>
