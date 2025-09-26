@@ -576,6 +576,212 @@ class GPXManager:
             
         # Write to file with proper formatting
         self._write_formatted_xml(root, file_path)
+    
+    def export_to_kml(self, pois: List[POI], output_path: Path, verbose: bool = False):
+        """Export POIs to KML format for Google Earth"""
+        if verbose:
+            print(f"Exporting {len(pois)} POIs to KML format: {output_path}")
+        
+        # Create KML root element
+        kml = ET.Element('kml')
+        kml.set('xmlns', 'http://www.opengis.net/kml/2.2')
+        
+        # Create Document element
+        document = ET.SubElement(kml, 'Document')
+        
+        # Add document metadata
+        name_elem = ET.SubElement(document, 'name')
+        name_elem.text = 'GPX POI Collection'
+        
+        desc_elem = ET.SubElement(document, 'description')
+        desc_elem.text = f'Converted from GPX format. Contains {len(pois)} Points of Interest.'
+        
+        # Add styles for different POI types
+        self._add_kml_styles(document)
+        
+        # Group POIs by type for better organization
+        poi_groups = self._group_pois_by_type(pois)
+        
+        for group_name, group_pois in poi_groups.items():
+            # Create folder for each POI type
+            folder = ET.SubElement(document, 'Folder')
+            folder_name = ET.SubElement(folder, 'name')
+            folder_name.text = group_name
+            
+            folder_desc = ET.SubElement(folder, 'description')
+            folder_desc.text = f'{len(group_pois)} {group_name.lower()}'
+            
+            # Add POIs to the folder
+            for poi in group_pois:
+                placemark = ET.SubElement(folder, 'Placemark')
+                
+                # POI name
+                poi_name = ET.SubElement(placemark, 'name')
+                poi_name.text = poi.name
+                
+                # POI description with rich content
+                poi_desc = ET.SubElement(placemark, 'description')
+                poi_desc.text = self._create_kml_description(poi)
+                
+                # Style reference
+                style_url = ET.SubElement(placemark, 'styleUrl')
+                style_url.text = f"#{self._get_kml_style_id(poi)}"
+                
+                # Point coordinates
+                point = ET.SubElement(placemark, 'Point')
+                
+                # Add altitude mode for better 3D display
+                altitude_mode = ET.SubElement(point, 'altitudeMode')
+                altitude_mode.text = 'clampToGround'
+                
+                # Coordinates (longitude, latitude, altitude)
+                coordinates = ET.SubElement(point, 'coordinates')
+                if poi.ele is not None:
+                    coordinates.text = f"{poi.lon},{poi.lat},{poi.ele}"
+                else:
+                    coordinates.text = f"{poi.lon},{poi.lat},0"
+        
+        # Write KML file
+        self._write_kml_file(kml, output_path)
+        
+        if verbose:
+            print(f"Successfully exported to {output_path}")
+            print(f"Organized into {len(poi_groups)} categories:")
+            for group_name, group_pois in poi_groups.items():
+                print(f"  - {group_name}: {len(group_pois)} POIs")
+    
+    def _add_kml_styles(self, document: ET.Element):
+        """Add KML styles for different POI types"""
+        styles = {
+            'lodge_style': {
+                'color': 'ff0000ff',  # Red
+                'icon': 'http://maps.google.com/mapfiles/kml/shapes/lodging.png',
+                'scale': '1.0'
+            },
+            'summit_style': {
+                'color': 'ff00ff00',  # Green
+                'icon': 'http://maps.google.com/mapfiles/kml/shapes/triangle.png',
+                'scale': '1.2'
+            },
+            'fishing_style': {
+                'color': 'ffff0000',  # Blue
+                'icon': 'http://maps.google.com/mapfiles/kml/shapes/fishing.png',
+                'scale': '1.0'
+            },
+            'beach_style': {
+                'color': 'ff00ffff',  # Yellow
+                'icon': 'http://maps.google.com/mapfiles/kml/shapes/beach.png',
+                'scale': '1.0'
+            },
+            'scenic_style': {
+                'color': 'ffff00ff',  # Magenta
+                'icon': 'http://maps.google.com/mapfiles/kml/shapes/camera.png',
+                'scale': '1.0'
+            },
+            'default_style': {
+                'color': 'ffffffff',  # White
+                'icon': 'http://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png',
+                'scale': '1.0'
+            }
+        }
+        
+        for style_id, style_props in styles.items():
+            style = ET.SubElement(document, 'Style')
+            style.set('id', style_id)
+            
+            icon_style = ET.SubElement(style, 'IconStyle')
+            
+            color_elem = ET.SubElement(icon_style, 'color')
+            color_elem.text = style_props['color']
+            
+            scale_elem = ET.SubElement(icon_style, 'scale')
+            scale_elem.text = style_props['scale']
+            
+            icon_elem = ET.SubElement(icon_style, 'Icon')
+            href_elem = ET.SubElement(icon_elem, 'href')
+            href_elem.text = style_props['icon']
+    
+    def _group_pois_by_type(self, pois: List[POI]) -> Dict[str, List[POI]]:
+        """Group POIs by type for better organization in KML"""
+        groups = {
+            'DNT Cabins & Lodges': [],
+            'Mountain Peaks': [],
+            'Fishing Spots': [],
+            'Beaches': [],
+            'Scenic Areas': [],
+            'Other POIs': []
+        }
+        
+        for poi in pois:
+            name_lower = poi.name.lower()
+            desc_lower = (poi.desc or "").lower()
+            
+            if any(word in name_lower for word in ['hytta', 'bu', 'heim', 'stul', 'lodge', 'cabin']):
+                groups['DNT Cabins & Lodges'].append(poi)
+            elif any(word in name_lower for word in ['peak', 'topp', 'tind', 'horn', 'nuten']):
+                groups['Mountain Peaks'].append(poi)
+            elif any(word in desc_lower for word in ['fishing', 'fisk']):
+                groups['Fishing Spots'].append(poi)
+            elif any(word in name_lower for word in ['beach', 'strand']):
+                groups['Beaches'].append(poi)
+            elif any(word in desc_lower for word in ['view', 'utsikt', 'panoramic', 'scenic']):
+                groups['Scenic Areas'].append(poi)
+            else:
+                groups['Other POIs'].append(poi)
+        
+        # Remove empty groups
+        return {name: pois for name, pois in groups.items() if pois}
+    
+    def _create_kml_description(self, poi: POI) -> str:
+        """Create rich HTML description for KML placemark"""
+        html_parts = []
+        
+        # Basic description
+        if poi.desc:
+            html_parts.append(f"<p><strong>Description:</strong><br/>{poi.desc}</p>")
+        
+        # Coordinates
+        html_parts.append(f"<p><strong>Coordinates:</strong><br/>Lat: {poi.lat:.6f}, Lon: {poi.lon:.6f}</p>")
+        
+        # Elevation
+        if poi.ele is not None:
+            html_parts.append(f"<p><strong>Elevation:</strong> {poi.ele:.1f} meters</p>")
+        
+        # Link
+        if poi.link:
+            html_parts.append(f'<p><strong>More Info:</strong><br/><a href="{poi.link}" target="_blank">{poi.link}</a></p>')
+        
+        return "<div>" + "".join(html_parts) + "</div>"
+    
+    def _get_kml_style_id(self, poi: POI) -> str:
+        """Get appropriate KML style ID for a POI"""
+        name_lower = poi.name.lower()
+        desc_lower = (poi.desc or "").lower()
+        
+        if any(word in name_lower for word in ['hytta', 'bu', 'heim', 'stul', 'lodge']):
+            return 'lodge_style'
+        elif any(word in name_lower for word in ['peak', 'topp', 'tind', 'horn', 'nuten']):
+            return 'summit_style'
+        elif any(word in desc_lower for word in ['fishing', 'fisk']):
+            return 'fishing_style'
+        elif any(word in name_lower for word in ['beach', 'strand']):
+            return 'beach_style'
+        elif any(word in desc_lower for word in ['view', 'utsikt', 'panoramic']):
+            return 'scenic_style'
+        else:
+            return 'default_style'
+    
+    def _write_kml_file(self, kml_root: ET.Element, file_path: Path):
+        """Write KML file with proper formatting"""
+        # Add proper indentation
+        self._indent_xml(kml_root)
+        
+        # Create tree and write to file
+        tree = ET.ElementTree(kml_root)
+        
+        with open(file_path, 'wb') as f:
+            f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
+            tree.write(f, encoding='UTF-8', xml_declaration=False)
 
 
 def main():
@@ -595,9 +801,11 @@ Examples:
   poi-tool -t master-poi-collection.gpx --add-waypoint-symbols
   poi-tool -t master-poi-collection.gpx --garmin-optimize
   poi-tool -t master-poi-collection.gpx --export-garmin-poi output.csv
+  poi-tool -t master-poi-collection.gpx --export-kml output.kml
   
   # Combined operations
   poi-tool -t master-poi-collection.gpx --elevation-lookup --add-waypoint-symbols --garmin-optimize
+  poi-tool -t master-poi-collection.gpx --export-kml google-earth.kml --export-garmin-poi garmin.csv
         '''
     )
     
@@ -663,12 +871,18 @@ Examples:
         help='Export collection to Garmin POI CSV format'
     )
     
+    parser.add_argument(
+        '--export-kml',
+        type=Path,
+        help='Export collection to KML format for Google Earth'
+    )
+    
     args = parser.parse_args()
     
     # Validate arguments
     if not any([args.add, args.dedupe, args.sync_ut_no, args.garmin_optimize, 
-                args.add_waypoint_symbols, args.elevation_lookup, args.export_garmin_poi]):
-        parser.error("At least one operation must be specified (--add, --dedupe, --sync-ut-no, --garmin-optimize, --add-waypoint-symbols, --elevation-lookup, or --export-garmin-poi)")
+                args.add_waypoint_symbols, args.elevation_lookup, args.export_garmin_poi, args.export_kml]):
+        parser.error("At least one operation must be specified (--add, --dedupe, --sync-ut-no, --garmin-optimize, --add-waypoint-symbols, --elevation-lookup, --export-garmin-poi, or --export-kml)")
     
     gpx_manager = GPXManager()
     
@@ -800,6 +1014,12 @@ Examples:
         print(f"Exporting to Garmin POI CSV format...")
         gpx_manager.export_garmin_poi_csv(current_pois, args.export_garmin_poi, args.verbose)
         print(f"Exported to {args.export_garmin_poi}")
+    
+    # Handle --export-kml command
+    if args.export_kml:
+        print(f"Exporting to KML format for Google Earth...")
+        gpx_manager.export_to_kml(current_pois, args.export_kml, args.verbose)
+        print(f"Exported to {args.export_kml}")
     
     # Save changes if any processing operations were performed
     if any([args.sync_ut_no, args.elevation_lookup, args.add_waypoint_symbols]) and not args.garmin_optimize:

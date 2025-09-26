@@ -49,6 +49,12 @@ python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
   - Wildcard pattern: `-a "*.gpx"` (processes all GPX files, excluding the target)
 - `--dedupe`: Remove duplicates from the target file
 - `--distance-threshold DISTANCE`: Distance threshold in meters for duplicate detection (default: 50.0)
+- `--sync-ut-no`: Sync POI information with ut.no database for DNT cabins
+- `--elevation-lookup`: Automatically add elevation data using online services
+- `--add-waypoint-symbols`: Add Garmin-compatible symbols/icons to waypoints
+- `--garmin-optimize`: Optimize GPX file structure for Garmin devices
+- `--export-garmin-poi FILE.csv`: Export to Garmin POI CSV format for BaseCamp
+- `--export-kml FILE.kml`: Export to KML format for Google Earth
 - `-v, --verbose`: Enable detailed output
 - `-h, --help`: Show help message
 
@@ -72,6 +78,10 @@ python3 poi-tool.py -t master-poi-collection.gpx --dedupe
 
 # Use custom distance threshold (100 meters instead of default 50)
 python3 poi-tool.py -t master-poi-collection.gpx -a mountain-peaks.gpx --distance-threshold 100.0
+
+# Export to different formats
+python3 poi-tool.py -t master-poi-collection.gpx --export-kml google-earth.kml
+python3 poi-tool.py -t master-poi-collection.gpx --export-garmin-poi garmin-basecamp.csv
 ```
 
 ## How Duplicate Detection Works
@@ -89,10 +99,28 @@ When duplicates are found, the tool intelligently merges them by:
 
 ## File Format
 
-The tool works with standard GPX 1.1 format files and outputs properly formatted XML that's compatible with:
+The tool works with standard GPX 1.1 format files and outputs properly formatted files compatible with:
+
 - Garmin GPS devices
 - Most mapping software
 - GPX standard specifications
+- Google Earth (via KML export)
+- Garmin BaseCamp (via CSV export)
+
+## Export Formats
+
+### KML for Google Earth
+The `--export-kml` feature creates KML files optimized for Google Earth with:
+- **Organized folders** by POI type (DNT Cabins, Mountain Peaks, Fishing Spots, etc.)
+- **Custom icons** and colors for different POI categories
+- **Rich descriptions** with elevation data, coordinates, and clickable links
+- **3D visualization** support with elevation data
+
+### Garmin POI CSV
+The `--export-garmin-poi` feature creates CSV files for Garmin BaseCamp with:
+- **BaseCamp compatibility** for easy import
+- **Symbol assignments** based on POI type
+- **Complete metadata** including coordinates, elevation, and descriptions
 
 ## Example Workflow
 

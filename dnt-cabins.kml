@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <name>GPX POI Collection</name>
+        <description>Converted from GPX format. Contains 34 Points of Interest.</description>
+        <Style id="lodge_style">
+            <IconStyle>
+                <color>ff0000ff</color>
+                <scale>1.0</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/lodging.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="summit_style">
+            <IconStyle>
+                <color>ff00ff00</color>
+                <scale>1.2</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/triangle.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="fishing_style">
+            <IconStyle>
+                <color>ffff0000</color>
+                <scale>1.0</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/fishing.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="beach_style">
+            <IconStyle>
+                <color>ff00ffff</color>
+                <scale>1.0</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/beach.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="scenic_style">
+            <IconStyle>
+                <color>ffff00ff</color>
+                <scale>1.0</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/camera.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="default_style">
+            <IconStyle>
+                <color>ffffffff</color>
+                <scale>1.0</scale>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/pushpin/wht-pushpin.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Folder>
+            <name>DNT Cabins &amp; Lodges</name>
+            <description>23 dnt cabins &amp; lodges</description>
+            <Placemark>
+                <name>Gjendesheim</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT cabin at the start of Besseggen ridge hike. Staffed cabin with restaurant and accommodation.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.636900, Lon: 8.413100&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 995.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100002" target="_blank"&gt;https://ut.no/hytte/100002&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.4131,61.6369,995.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Glitterheim</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin beneath Glittertind, Norway's second highest peak. Restaurant and accommodation available.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.683300, Lon: 8.616700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1348.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100003" target="_blank"&gt;https://ut.no/hytte/100003&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.6167,61.6833,1348.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Memurubu</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin on the shore of Lake Gjende. Popular stop on the Besseggen hike.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.645800, Lon: 8.584200&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1016.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100004" target="_blank"&gt;https://ut.no/hytte/100004&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.5842,61.6458,1016.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Olavsbu</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Jotunheimen. Key location for accessing Falketind and other peaks.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.568100, Lon: 8.625800&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1440.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100005" target="_blank"&gt;https://ut.no/hytte/100005&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.6258,61.5681,1440.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Fondsbu</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin at the western end of Lake Bygdin. Historic lodge with restaurant.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.537500, Lon: 8.516700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1065.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100006" target="_blank"&gt;https://ut.no/hytte/100006&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.5167,61.5375,1065.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Geiterygghytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin on Hardangervidda with restaurant. Great views over the plateau.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.534200, Lon: 8.205800&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1157.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100010" target="_blank"&gt;https://ut.no/hytte/100010&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.2058,60.5342,1157.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Rondvassbu</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin in Rondane National Park. Access point to Rondslottet peak.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.966700, Lon: 9.833300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1165.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100012" target="_blank"&gt;https://ut.no/hytte/100012&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.8333,61.9667,1165.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Peer Gynt-hytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin named after the legendary character. Views of Rondslottet.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.958300, Lon: 9.916700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1000.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100013" target="_blank"&gt;https://ut.no/hytte/100013&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.9167,61.9583,1000.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Snøheim</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin in Dovrefjell. Base for climbing Snøhetta, the highest peak in the region.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.258300, Lon: 9.283300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1067.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100014" target="_blank"&gt;https://ut.no/hytte/100014&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.2833,62.2583,1067.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Reinheim</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Dovrefjell. Musk ox observation area nearby.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.316700, Lon: 9.216700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1100.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100015" target="_blank"&gt;https://ut.no/hytte/100015&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.2167,62.3167,1100.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Gjevilvasshytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin in Trollheimen. Popular base for climbing Blåhø.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.716700, Lon: 9.183300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 721.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100016" target="_blank"&gt;https://ut.no/hytte/100016&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.1833,62.7167,721.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Jøldalshytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin in Trollheimen. Access to multiple peaks and valleys.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.633300, Lon: 9.116700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1000.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100017" target="_blank"&gt;https://ut.no/hytte/100017&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>9.1167,62.6333,1000.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Munkebu Hut</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Lofoten. Spectacular views of Moskenes and the sea.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 68.083300, Lon: 13.416700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 200.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100018" target="_blank"&gt;https://ut.no/hytte/100018&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>13.4167,68.0833,200.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Storslett Hytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Lyngen Alps. Alpine environment with skiing and climbing opportunities.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 69.583300, Lon: 20.116700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 800.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100020" target="_blank"&gt;https://ut.no/hytte/100020&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>20.1167,69.5833,800.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Rabothytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Saltfjellet-Svartisen National Park. Access to Svartisen glacier.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 66.333300, Lon: 13.716700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 750.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100022" target="_blank"&gt;https://ut.no/hytte/100022&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>13.7167,66.3333,750.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Preikestolen Lodge</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT lodge near the famous Preikestolen (Pulpit Rock). Modern facilities with restaurant.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.216700, Lon: 7.183300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 270.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100023" target="_blank"&gt;https://ut.no/hytte/100023&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.1833,61.2167,270.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Vassfjellet Hytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT cabin near Trondheim. Popular for winter activities and cross-country skiing.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 63.416700, Lon: 10.416700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 650.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100025" target="_blank"&gt;https://ut.no/hytte/100025&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>10.4167,63.4167,650.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Kobberhaughytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Oslomarka. Historic cabin with traditional Norwegian architecture.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 59.983300, Lon: 10.616700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 350.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100027" target="_blank"&gt;https://ut.no/hytte/100027&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>10.6167,59.9833,350.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Preikestolhytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT cabin serving as basecamp for Preikestolen hike. Modern facilities and restaurant.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 58.383300, Lon: 6.616700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 270.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100028" target="_blank"&gt;https://ut.no/hytte/100028&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>6.6167,58.3833,270.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Stavali Hytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Setesdal region. Traditional mountain cabin in beautiful valley setting.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 59.033300, Lon: 7.783300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 650.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100029" target="_blank"&gt;https://ut.no/hytte/100029&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.7833,59.0333,650.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Leirvassbu</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin in Jotunheimen. Gateway to Kyrkja peak and Leirvatnet lake.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.716700, Lon: 8.916700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1405.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100030" target="_blank"&gt;https://ut.no/hytte/100030&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.9167,61.7167,1405.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Spiterstulen</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT lodge and research station. Base for climbing Galdhøpiggen, Norway's highest peak.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.816700, Lon: 8.816700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1100.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100031" target="_blank"&gt;https://ut.no/hytte/100031&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.8167,61.8167,1100.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Iungsdalshytta</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in beautiful valley setting. Access point to multiple hiking routes.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.033300, Lon: 8.183300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 840.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100033" target="_blank"&gt;https://ut.no/hytte/100033&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#lodge_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.1833,61.0333,840.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Fishing Spots</name>
+            <description>1 fishing spots</description>
+            <Placemark>
+                <name>Hadlaskard</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin on southern Hardangervidda. Remote location with excellent fishing.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.345800, Lon: 7.983300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1050.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100011" target="_blank"&gt;https://ut.no/hytte/100011&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#fishing_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.9833,60.3458,1050.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Beaches</name>
+            <description>1 beaches</description>
+            <Placemark>
+                <name>Kvalvika Beach Shelter</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Open DNT shelter near Kvalvika Beach. Remote beach location with basic facilities.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 68.216700, Lon: 13.833300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 50.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100019" target="_blank"&gt;https://ut.no/hytte/100019&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#beach_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>13.8333,68.2167,50.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Scenic Areas</name>
+            <description>2 scenic areas</description>
+            <Placemark>
+                <name>Skåla Skyscraper</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT cabin on Skåla peak. Highest located cabin in Scandinavia with panoramic views.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.116700, Lon: 7.283300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1843.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100024" target="_blank"&gt;https://ut.no/hytte/100024&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#scenic_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.2833,62.1167,1843.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Grotli Høyfjellshotell</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT mountain hotel at high altitude. Spectacular views and access to Breheimen National Park.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 62.583300, Lon: 8.083300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 884.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100034" target="_blank"&gt;https://ut.no/hytte/100034&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#scenic_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.0833,62.5833,884.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+        <Folder>
+            <name>Other POIs</name>
+            <description>7 other pois</description>
+            <Placemark>
+                <name>Turtagrø Hotel</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT hotel in Jotunheimen, base for climbing Skagastølstind and Store Styggedalstind.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.488100, Lon: 8.745600&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 884.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100007" target="_blank"&gt;https://ut.no/hytte/100007&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.7456,61.4881,884.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Finse 1222</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT staffed cabin at Finse train station. Gateway to Hardangervidda plateau.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.583300, Lon: 7.166700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1222.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100008" target="_blank"&gt;https://ut.no/hytte/100008&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.1667,60.5833,1222.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Krækkja</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin on Hardangervidda. Popular stop on the Finse-Geilo traverse.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.638900, Lon: 7.391700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 1200.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100009" target="_blank"&gt;https://ut.no/hytte/100009&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>7.3917,60.6389,1200.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Bjørnhollia</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin in Rondane. Popular basecamp for hiking Storronden.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 61.884000, Lon: 10.012500&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 894.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/101110" target="_blank"&gt;https://ut.no/hytte/101110&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>10.0125,61.884,894.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Treriksrøysa Hut</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;Self-service DNT cabin near the three-country border (Norway-Finland-Russia). Remote arctic location.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 70.083300, Lon: 29.416700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 450.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100021" target="_blank"&gt;https://ut.no/hytte/100021&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>29.4167,70.0833,450.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Kikutstua</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT cabin in Nordmarka forest near Oslo. Accessible by public transport and popular for day trips.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.183300, Lon: 10.833300&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 417.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100026" target="_blank"&gt;https://ut.no/hytte/100026&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>10.8333,60.1833,417.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <name>Haukeliseter</name>
+                <description>&lt;div&gt;&lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt;&lt;br/&gt;DNT hotel on the historic King's Road. Mountain hotel with restaurant and conference facilities.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coordinates:&lt;/strong&gt;&lt;br/&gt;Lat: 60.483300, Lon: 8.716700&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Elevation:&lt;/strong&gt; 988.0 meters&lt;/p&gt;&lt;p&gt;&lt;strong&gt;More Info:&lt;/strong&gt;&lt;br/&gt;&lt;a href="https://ut.no/hytte/100032" target="_blank"&gt;https://ut.no/hytte/100032&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description>
+                <styleUrl>#default_style</styleUrl>
+                <Point>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>8.7167,60.4833,988.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>
