@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gpx xmlns:ns0="http://www.topografix.com/GPX/1/1" xmlns:ns1="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="poi-tool">
+  <metadata />
+  <wpt lat="63.06999573016169" lon="11.47225018281019">
+    <name>Græslihytta</name>
+    <desc />
+    <ns0:extensions>
+      <ns1:betjeningsgrad>S</ns1:betjeningsgrad>
+      <ns1:hytteeier>1</ns1:hytteeier>
+    </ns0:extensions>
+  </wpt>
+</gpx>
