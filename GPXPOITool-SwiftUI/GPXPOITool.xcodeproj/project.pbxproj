@@ -16,13 +16,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A1000013000000000001 /* GPX POI Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPX POI Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000002000000000001 /* GPXPOIToolApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXPOIToolApp.swift; sourceTree = "<group>"; };
 		A1000004000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000006000000000001 /* POI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POI.swift; sourceTree = "<group>"; };
 		A1000008000000000001 /* GPXProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXProcessor.swift; sourceTree = "<group>"; };
 		A1000010000000000001 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A1000012000000000001 /* POIListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIListView.swift; sourceTree = "<group>"; };
+		A1000013000000000001 /* GPX POI Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPX POI Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000014000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1000015000000000001 /* GPX_POI_Tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GPX_POI_Tool.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,14 +46,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		A1000019000000000001 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A1000013000000000001 /* GPX POI Tool.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A1000018000000000001 /* GPX POI Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +58,14 @@
 				A1000014000000000001 /* Info.plist */,
 			);
 			path = "GPX POI Tool";
+			sourceTree = "<group>";
+		};
+		A1000019000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1000013000000000001 /* GPX POI Tool.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		A1000020000000000001 /* Models */ = {
@@ -121,7 +121,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					A1000023000000000001 = {
 						CreatedOnToolsVersion = 15.0;
@@ -207,6 +207,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -231,6 +232,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -270,6 +272,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -287,6 +290,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -300,9 +304,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "GPX POI Tool/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "GPX POI Tool";
@@ -329,9 +337,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "GPX POI Tool/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "GPX POI Tool";
@@ -352,20 +364,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1000028000000000001 /* Build configuration list for PBXProject "GPXPOITool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1000029000000000001 /* Debug */,
-				A1000030000000000001 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A1000024000000000001 /* Build configuration list for PBXNativeTarget "GPX POI Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1000031000000000001 /* Debug */,
 				A1000032000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1000028000000000001 /* Build configuration list for PBXProject "GPXPOITool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000029000000000001 /* Debug */,
+				A1000030000000000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

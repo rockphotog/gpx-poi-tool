@@ -65,63 +65,75 @@ class GPXProcessor: ObservableObject {
         return removed
     }
 
-    /// Add elevation data to POIs using the Python tool
+    /// Add elevation data to POIs using native Swift elevation service
     func addElevationData() async throws -> Int {
         guard !pois.isEmpty else { return 0 }
 
         isLoading = true
         defer { isLoading = false }
 
-        // Create temporary GPX file
-        let tempDir = FileManager.default.temporaryDirectory
-        let tempGPXFile = tempDir.appendingPathComponent("temp_\(UUID().uuidString).gpx")
-        let tempOutputFile = tempDir.appendingPathComponent("temp_output_\(UUID().uuidString).gpx")
-
-        defer {
-            try? FileManager.default.removeItem(at: tempGPXFile)
-            try? FileManager.default.removeItem(at: tempOutputFile)
+        // Extract coordinates from POIs that don't have elevation data
+        let coordinatesNeedingElevation = pois.enumerated().compactMap { index, poi in
+            if poi.elevation == nil || poi.elevation == 0 {
+                return (index, poi.latitude, poi.longitude)
+            }
+            return nil
         }
 
-        // Write current POIs to temp file
-        try writeGPXFile(pois, to: tempGPXFile)
+        guard !coordinatesNeedingElevation.isEmpty else {
+            lastProcessingResult = "All POIs already have elevation data"
+            return 0
+        }
 
-        // Call Python tool to add elevation
-        try await runPythonTool(arguments: [
-            "-t", tempOutputFile.path,
-            "-a", tempGPXFile.path,
-            "--elevation-lookup"
-        ])
+        print("Fetching elevation data for \(coordinatesNeedingElevation.count) POIs...")
 
-        // Read back the enhanced POIs
-        let enhancedPOIs = try await loadGPXFile(tempOutputFile)
+        // Fetch elevation data
+        let coordinates = coordinatesNeedingElevation.map { $0.1 }
+        let elevationResults: [ElevationService.ElevationPoint]
+        
+        do {
+            elevationResults = try await elevationService.fetchElevations(for: coordinates)
+        } catch {
+            throw GPXError.elevationLookupFailed(error.localizedDescription)
+        }
 
-        // Update collection
-        poiCollection = POICollection(pois: enhancedPOIs)
+        // Update POIs with elevation data
+        var updatedPOIs = pois
+        var enhancedCount = 0
+
+        for (arrayIndex, (poiIndex, _, _)) in coordinatesNeedingElevation.enumerated() {
+            if let elevation = elevationResults[arrayIndex].elevation, elevation > 0 {
+                let originalPOI = updatedPOIs[poiIndex]
+                updatedPOIs[poiIndex] = POI(
+                    name: originalPOI.name,
+                    description: originalPOI.description,
+                    latitude: originalPOI.latitude,
+                    longitude: originalPOI.longitude,
+                    elevation: elevation,
+                    symbol: originalPOI.symbol,
+                    extensions: originalPOI.extensions
+                )
+                enhancedCount += 1
+            }
+        }
+
+        // Update the collection
+        poiCollection = POICollection(pois: updatedPOIs)
         pois = poiCollection.pois
 
-        return enhancedPOIs.count { $0.elevation != nil && $0.elevation! > 0 }
+        lastProcessingResult = "Added elevation data to \(enhancedCount) of \(coordinatesNeedingElevation.count) POIs"
+        print("Successfully added elevation data to \(enhancedCount) POIs")
+
+        return enhancedCount
     }
 
-    /// Export POIs to KML format
+    /// Export POIs to KML format using native Swift implementation
     func exportKML(to url: URL) async throws {
         guard !pois.isEmpty else { return }
 
-        // Create temporary GPX file
-        let tempDir = FileManager.default.temporaryDirectory
-        let tempGPXFile = tempDir.appendingPathComponent("export_\(UUID().uuidString).gpx")
-
-        defer {
-            try? FileManager.default.removeItem(at: tempGPXFile)
-        }
-
-        // Write current POIs to temp file
-        try writeGPXFile(pois, to: tempGPXFile)
-
-        // Call Python tool to export KML
-        try await runPythonTool(arguments: [
-            "-t", tempGPXFile.path,
-            "--export-kml", url.path
-        ])
+        try KMLExporter.exportPOIs(pois, to: url)
+        
+        print("Successfully exported \(pois.count) POIs to KML: \(url.lastPathComponent)")
     }
 
     // MARK: - Private Methods
@@ -256,35 +268,7 @@ class GPXProcessor: ObservableObject {
         try gpxContent.write(to: url, atomically: true, encoding: .utf8)
     }
 
-    /// Run the Python tool with given arguments
-    private func runPythonTool(arguments: [String]) async throws {
-        return try await withCheckedThrowingContinuation { continuation in
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: "/usr/bin/python3")
-            process.arguments = [pythonToolPath.path] + arguments
 
-            // Capture output for error handling
-            let pipe = Pipe()
-            process.standardOutput = pipe
-            process.standardError = pipe
-
-            process.terminationHandler = { process in
-                if process.terminationStatus == 0 {
-                    continuation.resume()
-                } else {
-                    let data = pipe.fileHandleForReading.readDataToEndOfFile()
-                    let output = String(data: data, encoding: .utf8) ?? "Unknown error"
-                    continuation.resume(throwing: GPXError.pythonToolFailed(output))
-                }
-            }
-
-            do {
-                try process.run()
-            } catch {
-                continuation.resume(throwing: error)
-            }
-        }
-    }
 
     // MARK: - Helper Methods
 
@@ -326,20 +310,20 @@ class GPXProcessor: ObservableObject {
 
 enum GPXError: LocalizedError {
     case invalidEncoding
-    case pythonToolFailed(String)
     case fileNotFound
     case fileAccessDenied(String)
+    case elevationLookupFailed(String)
 
     var errorDescription: String? {
         switch self {
         case .invalidEncoding:
             return "Invalid file encoding"
-        case .pythonToolFailed(let message):
-            return "Python tool failed: \(message)"
         case .fileNotFound:
             return "File not found"
         case .fileAccessDenied(let filename):
             return "Access denied to file: \(filename). Make sure the app has permission to access this file."
+        case .elevationLookupFailed(let message):
+            return "Elevation lookup failed: \(message)"
         }
     }
 }
