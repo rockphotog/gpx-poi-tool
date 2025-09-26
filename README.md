@@ -55,11 +55,13 @@ Each POI includes rich information balloons with descriptions, coordinates, elev
 cd gpx-poi-tool
 
 # Set up Python virtual environment (recommended)
-python3 -m venv .venv
-source .venv/bin/activate  # On macOS/Linux
+python3 -m venv venv
+source venv/bin/activate  # On macOS/Linux
+# On Windows use: venv\Scripts\activate
 
 # Install required packages
-pip install requests
+pip install -r requirements.txt
+# Or manually: pip install requests
 ```
 
 ### 2. **Try It Out with Sample Data**
@@ -98,7 +100,26 @@ python3 poi-tool.py -t master-poi-collection.gpx --elevation-lookup --add-waypoi
 
 ## Installation
 
-No installation required. Just ensure you have Python 3.6+ installed on your system.
+### Requirements
+- Python 3.6+ 
+- `requests` library for elevation lookup and ut.no sync features
+
+### Setup (Recommended)
+```bash
+# Set up a virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On macOS/Linux
+# On Windows use: venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Alternative: System-wide installation
+```bash
+# Install requests globally (may require sudo on some systems)
+pip3 install requests
+```
 
 ## Usage
 
