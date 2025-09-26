@@ -117,8 +117,11 @@ pip install -r requirements.txt
 
 ### Alternative: System-wide installation
 ```bash
-# Install requests globally (may require sudo on some systems)
-pip3 install requests
+# Install requests in user space (recommended for macOS)
+pip3 install --user --break-system-packages requests
+
+# Alternative: Install globally (may require sudo on some systems)
+# pip3 install requests
 ```
 
 ## Usage
