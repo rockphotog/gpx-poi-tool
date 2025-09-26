@@ -64,10 +64,6 @@ Examples:
                        action='store_true',
                        help='Remove duplicate POIs from target file')
 
-    parser.add_argument('--sync-utno',
-                       action='store_true',
-                       help='Sync with ut.no cabin database')
-
     # Enhancement arguments
     parser.add_argument('--elevation-lookup',
                        action='store_true',
@@ -105,7 +101,7 @@ Examples:
 def validate_arguments(args) -> bool:
     """Validate command line arguments."""
     # Must have at least one action
-    actions = [args.add, args.dedupe, args.sync_utno, args.elevation_lookup,
+    actions = [args.add, args.dedupe, args.elevation_lookup,
                args.add_waypoint_symbols, args.garmin_optimize,
                args.export_garmin_poi, args.export_kml, args.split]
 
@@ -211,10 +207,6 @@ def main():
 
         # Update current POIs for further processing
         target_pois = deduplicated_pois
-
-    # Handle --sync-utno command
-    if args.sync_utno:
-        print("ut.no sync not yet implemented in modular version")
 
     # Apply enhancement operations
     current_pois = target_pois
