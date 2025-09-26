@@ -1,19 +1,100 @@
 # GPX POI Management Tool
 
-A Python command-line tool for managing Points of Interest (POI) in GPX files for Garmin GPS devices. This tool helps you build and maintain a master collection of POIs by importing from multiple GPX files and automatically handling duplicates.
+![GPX POI Tool - Norwegian Mountain Visualization](graphics/kart-1.png)
+*Example: DNT cabins and trails visualized in Google Earth using the KML export feature*
 
-## Features
+A powerful Python command-line tool for managing Points of Interest (POI) in GPX files for Garmin GPS devices and Google Earth. This tool helps you build and maintain a master collection of POIs by importing from multiple GPX files, automatically handling duplicates, and exporting to various formats including KML for Google Earth visualization.
 
+## ✨ Key Features
+
+### 📍 **POI Management**
 - **Import POIs**: Add POIs from any GPX file to your master collection
+- **Multi-file Import**: Process multiple files at once using wildcards (`*.gpx`)
 - **Duplicate Detection**: Automatically detects duplicates based on:
   - Exact name matches (case-insensitive)
   - Geographic proximity (configurable distance threshold, default 50m)
-- **Smart Merging**: When duplicates are found, combines the best information from both POIs:
-  - Keeps the longer/more detailed name and description
-  - Preserves elevation data when available
-  - Merges coordinate data intelligently
+- **Smart Merging**: When duplicates are found, combines the best information from both POIs
 - **Deduplication**: Remove duplicates from existing GPX files
-- **Proper GPX Formatting**: Outputs properly formatted XML compatible with Garmin devices
+
+### 🔧 **Advanced Features**
+- **UT.no Integration**: Sync with DNT cabin database for updated information
+- **Elevation Lookup**: Automatically fetch elevation data using online services
+- **Garmin Optimization**: Optimize files specifically for Garmin GPS devices
+- **Symbol Assignment**: Add appropriate Garmin-compatible symbols based on POI type
+
+### 📤 **Export Options**
+- **GPX Output**: Standard GPX 1.1 format for GPS devices
+- **KML Export**: Rich Google Earth files with organized folders and custom icons
+- **Garmin CSV**: BaseCamp-compatible format for easy import
+
+## 🌍 **Google Earth Integration Example**
+
+Transform your GPX collection into a beautiful Google Earth visualization:
+
+```bash
+# Export your DNT cabin collection to Google Earth
+python3 poi-tool.py -t dnt-cabins-norway.gpx --export-kml cabins-google-earth.kml
+```
+
+**Result**: A professionally organized KML file with:
+- 🏠 **DNT Cabins & Lodges** (red lodge icons)
+- 🏔️ **Mountain Peaks** (green triangle icons)  
+- 🎣 **Fishing Spots** (blue fishing icons)
+- 📷 **Scenic Areas** (magenta camera icons)
+- 🏖️ **Beaches** (yellow beach icons)
+
+Each POI includes rich information balloons with descriptions, coordinates, elevation data, and clickable links to ut.no pages.
+
+> 💡 **Try it yourself**: Download [example-google-earth.kml](example-google-earth.kml) and open it in Google Earth to see the DNT cabin collection in action!
+
+## 🚀 **Quick Start for New Users**
+
+### 1. **Set Up Your Environment**
+```bash
+# Clone or download this repository
+cd gpx-poi-tool
+
+# Set up Python virtual environment (recommended)
+python3 -m venv .venv
+source .venv/bin/activate  # On macOS/Linux
+
+# Install required packages
+pip install requests
+```
+
+### 2. **Try It Out with Sample Data**
+```bash
+# Import all GPX files in the current directory to create your master collection
+python3 poi-tool.py -t master-poi-collection.gpx -a "*.gpx" -v
+
+# Export to Google Earth for visualization
+python3 poi-tool.py -t master-poi-collection.gpx --export-kml my-pois.kml
+
+# Export to Garmin BaseCamp format
+python3 poi-tool.py -t master-poi-collection.gpx --export-garmin-poi my-pois.csv
+```
+
+### 3. **Enhance Your Collection**
+```bash
+# Add elevation data and Garmin symbols, then optimize
+python3 poi-tool.py -t master-poi-collection.gpx --elevation-lookup --add-waypoint-symbols --garmin-optimize -v
+```
+
+**Result**: You now have a professional POI collection ready for both Garmin GPS devices and Google Earth! 🎯
+
+---
+
+## 📊 **Workflow Overview**
+
+```
+📂 Individual GPX files    →   🔄 poi-tool.py   →   📍 Master Collection
+   ├── cabin1.gpx                    ├── Import         ├── master-collection.gpx
+   ├── cabin2.gpx                    ├── Deduplicate    ├── master-collection.garmin.gpx
+   ├── trails.gpx                    ├── Enhance        ├── master-collection.kml
+   └── peaks.gpx                     └── Export         └── master-collection.csv
+                                                                  ↓
+                                                          🗺️ Ready for GPS & Google Earth
+```
 
 ## Installation
 
