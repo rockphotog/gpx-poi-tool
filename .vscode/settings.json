@@ -1,5 +1,69 @@
 {
     "files.associations": {
-        "*.gpx": "xml"
-    }
+        "*.gpx": "xml",
+        "*.fit": "plaintext",
+        "*.kml": "xml"
+    },
+    "xml.format.enabled": true,
+    "xml.format.splitAttributes": false,
+    "xml.format.joinCDATALines": true,
+    "xml.format.joinContentLines": false,
+    "xml.format.joinCommentLines": false,
+    "xml.format.spaceBeforeEmptyCloseTag": true,
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml",
+        "editor.formatOnSave": false,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    },
+    "python.defaultInterpreterPath": "python3",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true,
+        "**/.pytest_cache": true,
+        "**/.mypy_cache": true,
+        "**/node_modules": true,
+        "**/.git": false,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/tmp": true,
+        "**/dist": true,
+        "**/.pytest_cache": true,
+        "**/__pycache__": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.pytest_cache/**": true,
+        "**/__pycache__/**": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "editor.rulers": [88, 120],
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "markdown.preview.breaks": true,
+    "markdown.preview.linkify": true
 }

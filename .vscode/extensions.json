@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "redhat.vscode-xml",
+        "yzhang.markdown-all-in-one",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.vscode-json",
+        "esbenp.prettier-vscode"
+    ],
+    "unwantedRecommendations": [
+        "ms-python.pylint"
+    ]
+}
