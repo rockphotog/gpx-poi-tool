@@ -135,9 +135,8 @@ struct POIRow: View {
             // Coordinates
             HStack {
                 Text("\(String(format: "%.4f", poi.latitude)), \(String(format: "%.4f", poi.longitude))")
-                    .font(.caption2)
+                    .font(.caption2.monospaced())
                     .foregroundStyle(.tertiary)
-                    .fontFamily(.monospaced)
 
                 Spacer()
 

@@ -9,8 +9,8 @@ import Foundation
 import MapKit
 
 /// Point of Interest model that matches the Python POI structure
-struct POI: Identifiable, Codable {
-    let id = UUID()
+struct POI: Identifiable, Codable, Equatable, Hashable {
+    let id: UUID
     let name: String
     let description: String
     let latitude: Double
@@ -34,6 +34,7 @@ struct POI: Identifiable, Codable {
         symbol: String? = nil,
         extensions: String? = nil
     ) {
+        self.id = UUID()
         self.name = name
         self.description = description
         self.latitude = latitude
@@ -43,9 +44,19 @@ struct POI: Identifiable, Codable {
         self.extensions = extensions
     }
 
+    /// Equatable conformance - POIs are equal if they have the same ID
+    static func == (lhs: POI, rhs: POI) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    /// Hashable conformance - hash based on ID
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
     /// Distance to another POI in meters
     func distance(to other: POI) -> Double {
-        let location1 = CLLocation(latitude: latitude, longitude: longitude)
+        let location1 = CLLocation(latitude: self.latitude, longitude: self.longitude)
         let location2 = CLLocation(latitude: other.latitude, longitude: other.longitude)
         return location1.distance(from: location2)
     }
@@ -53,7 +64,7 @@ struct POI: Identifiable, Codable {
     /// Check if this POI is a duplicate of another (using same logic as Python tool)
     func isDuplicate(of other: POI, threshold: Double = 50.0) -> Bool {
         // Name match (case insensitive)
-        if name.lowercased() == other.name.lowercased() {
+        if self.name.lowercased() == other.name.lowercased() {
             return true
         }
 
@@ -63,12 +74,12 @@ struct POI: Identifiable, Codable {
 
     /// Map annotation symbol based on POI type
     var mapSymbol: String {
-        if let symbol = symbol {
+        if let symbol = self.symbol {
             return symbol
         }
 
         // Intelligent symbol detection based on name
-        let lowercaseName = name.lowercased()
+        let lowercaseName = self.name.lowercased()
 
         if lowercaseName.contains("hytte") || lowercaseName.contains("hut") || lowercaseName.contains("cabin") {
             return "house.fill"
@@ -85,7 +96,7 @@ struct POI: Identifiable, Codable {
 
     /// Color for map annotation
     var mapColor: String {
-        let lowercaseName = name.lowercased()
+        let lowercaseName = self.name.lowercased()
 
         if lowercaseName.contains("hytte") || lowercaseName.contains("hut") || lowercaseName.contains("cabin") {
             return "red"

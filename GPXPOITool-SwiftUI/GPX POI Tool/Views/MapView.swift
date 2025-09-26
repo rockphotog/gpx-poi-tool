@@ -11,41 +11,46 @@ import MapKit
 struct MapView: View {
     let pois: [POI]
     @Binding var selectedPOI: POI?
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 61.0, longitude: 9.0), // Center of Norway
-        span: MKCoordinateSpan(latitudeDelta: 5.0, longitudeDelta: 5.0)
+    @State private var position = MapCameraPosition.region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 61.0, longitude: 9.0), // Center of Norway
+            span: MKCoordinateSpan(latitudeDelta: 5.0, longitudeDelta: 5.0)
+        )
     )
-    @State private var selectedAnnotation: POIAnnotation?
 
     var body: some View {
-        Map(coordinateRegion: $region,
-            annotationItems: poiAnnotations,
-            annotationContent: { annotation in
-                MapAnnotation(coordinate: annotation.coordinate) {
+        Map(position: $position) {
+            ForEach(pois) { poi in
+                Annotation(poi.name, coordinate: poi.coordinate) {
                     POIMapPin(
-                        poi: annotation.poi,
-                        isSelected: selectedPOI?.id == annotation.poi.id
+                        poi: poi,
+                        isSelected: selectedPOI?.id == poi.id
                     )
                     .onTapGesture {
-                        selectedPOI = annotation.poi
+                        selectedPOI = poi
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            region.center = annotation.poi.coordinate
+                            position = .region(MKCoordinateRegion(
+                                center: poi.coordinate,
+                                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                            ))
                         }
                     }
                 }
-            })
+            }
+        }
         .onAppear {
             updateRegionForPOIs()
         }
-        .onChange(of: pois) { _ in
+        .onChange(of: pois) {
             updateRegionForPOIs()
         }
-        .onChange(of: selectedPOI) { poi in
+        .onChange(of: selectedPOI) { _, poi in
             if let poi = poi {
                 withAnimation(.easeInOut(duration: 0.5)) {
-                    region.center = poi.coordinate
-                    // Zoom in when selecting a POI
-                    region.span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                    position = .region(MKCoordinateRegion(
+                        center: poi.coordinate,
+                        span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                    ))
                 }
             }
         }
@@ -68,10 +73,6 @@ struct MapView: View {
         }
     }
 
-    private var poiAnnotations: [POIAnnotation] {
-        pois.map { POIAnnotation(poi: $0) }
-    }
-
     private func updateRegionForPOIs() {
         guard !pois.isEmpty else { return }
 
@@ -85,20 +86,9 @@ struct MapView: View {
         if !mapRect.isNull {
             let padding = 0.1 // Add 10% padding
             withAnimation(.easeInOut(duration: 0.8)) {
-                region = MKCoordinateRegion(mapRect.insetBy(dx: -mapRect.size.width * padding, dy: -mapRect.size.height * padding))
+                position = .region(MKCoordinateRegion(mapRect.insetBy(dx: -mapRect.size.width * padding, dy: -mapRect.size.height * padding)))
             }
         }
-    }
-}
-
-// MARK: - POI Annotation
-
-struct POIAnnotation: Identifiable {
-    let id = UUID()
-    let poi: POI
-
-    var coordinate: CLLocationCoordinate2D {
-        poi.coordinate
     }
 }
 

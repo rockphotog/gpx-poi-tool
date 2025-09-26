@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-/// Main service class that handles GPX processing and integrates with the Python tool
+/// Main service class that handles GPX processing with native Swift elevation lookup
 @MainActor
 class GPXProcessor: ObservableObject {
     @Published var pois: [POI] = []
@@ -16,17 +16,10 @@ class GPXProcessor: ObservableObject {
     @Published var lastProcessingResult = ""
 
     private var poiCollection = POICollection()
-    private let pythonToolPath: URL
+    private let elevationService = ElevationService()
 
     init() {
-        // Find the Python tool relative to the app bundle or in the project directory
-        if let bundlePath = Bundle.main.resourceURL {
-            pythonToolPath = bundlePath.appendingPathComponent("poi-tool.py")
-        } else {
-            // Development fallback - look for the tool in the project directory
-            pythonToolPath = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-                .appendingPathComponent("poi-tool.py")
-        }
+        // No longer need Python tool initialization
     }
 
     // MARK: - Public Methods
@@ -39,8 +32,22 @@ class GPXProcessor: ObservableObject {
         var allNewPOIs: [POI] = []
 
         for url in urls {
-            let pois = try await loadGPXFile(url)
-            allNewPOIs.append(contentsOf: pois)
+            // Each URL needs its own security-scoped access
+            let shouldStopAccessing = url.startAccessingSecurityScopedResource()
+            defer {
+                if shouldStopAccessing {
+                    url.stopAccessingSecurityScopedResource()
+                }
+            }
+
+            do {
+                let pois = try await loadGPXFile(url)
+                allNewPOIs.append(contentsOf: pois)
+                print("Successfully loaded \(pois.count) POIs from \(url.lastPathComponent)")
+            } catch {
+                print("Failed to load file \(url.lastPathComponent): \(error)")
+                throw GPXError.fileAccessDenied(url.lastPathComponent)
+            }
         }
 
         let result = poiCollection.add(allNewPOIs)
@@ -321,6 +328,7 @@ enum GPXError: LocalizedError {
     case invalidEncoding
     case pythonToolFailed(String)
     case fileNotFound
+    case fileAccessDenied(String)
 
     var errorDescription: String? {
         switch self {
@@ -330,6 +338,8 @@ enum GPXError: LocalizedError {
             return "Python tool failed: \(message)"
         case .fileNotFound:
             return "File not found"
+        case .fileAccessDenied(let filename):
+            return "Access denied to file: \(filename). Make sure the app has permission to access this file."
         }
     }
 }
