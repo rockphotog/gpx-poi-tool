@@ -71,6 +71,7 @@ struct ContentView: View {
                             .foregroundStyle(.secondary)
                         TextField("Search POIs...", text: $searchText)
                             .textFieldStyle(.roundedBorder)
+                            .autocorrectionDisabled(true)
                     }
 
                     HStack {
