@@ -21,6 +21,7 @@ class POI:
     desc: str = ""
     ele: Optional[float] = None
     link: Optional[str] = None
+    extensions: Optional[str] = None  # Raw XML string of extensions element
 
     def distance_to(self, other: 'POI') -> float:
         """Calculate distance between two POIs using Haversine formula (in meters)"""
@@ -61,6 +62,13 @@ class POI:
         # Choose link if available
         link = self.link if self.link else other.link
 
+        # Choose extensions if available (prefer the one with more data)
+        extensions = self.extensions
+        if not extensions and other.extensions:
+            extensions = other.extensions
+        elif extensions and other.extensions and len(other.extensions) > len(extensions):
+            extensions = other.extensions
+
         # Choose coordinates from the POI with elevation data
         if self.ele is not None and other.ele is None:
             lat, lon = self.lat, self.lon
@@ -71,7 +79,7 @@ class POI:
             lat = (self.lat + other.lat) / 2
             lon = (self.lon + other.lon) / 2
 
-        return POI(lat=lat, lon=lon, name=name, desc=desc, ele=ele, link=link)
+        return POI(lat=lat, lon=lon, name=name, desc=desc, ele=ele, link=link, extensions=extensions)
 
 
 class SpatialGrid:

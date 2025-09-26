@@ -80,7 +80,17 @@ class GPXFileHandler:
                     link_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}link')
                 link = link_elem.get('href') if link_elem is not None else None
 
-                poi = POI(lat=lat, lon=lon, name=name or "", desc=desc or "", ele=ele, link=link)
+                # Extract extensions - preserve original XML structure
+                extensions_elem = wpt.find('extensions')
+                if extensions_elem is None:
+                    extensions_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}extensions')
+
+                extensions = None
+                if extensions_elem is not None:
+                    # Convert extensions element to string to preserve exact structure
+                    extensions = ET.tostring(extensions_elem, encoding='unicode', method='xml')
+
+                poi = POI(lat=lat, lon=lon, name=name or "", desc=desc or "", ele=ele, link=link, extensions=extensions)
                 pois.append(poi)
 
             return pois
@@ -128,6 +138,16 @@ class GPXFileHandler:
             if poi.link:
                 link_elem = ET.SubElement(wpt, 'link')
                 link_elem.set('href', poi.link)
+
+            # Add original extensions if available
+            if poi.extensions:
+                try:
+                    # Parse the extensions XML string and add it to the waypoint
+                    extensions_element = ET.fromstring(poi.extensions)
+                    wpt.append(extensions_element)
+                except ET.ParseError:
+                    # If parsing fails, skip the extensions to avoid corrupting the file
+                    pass
 
         # Create tree and write to file
         tree = ET.ElementTree(root)
@@ -177,8 +197,21 @@ class GPXFileHandler:
             sym_elem = ET.SubElement(wpt, 'sym')
             sym_elem.text = 'Flag, Blue'
 
-            # Add Garmin extensions
+            # Handle extensions - merge original with Garmin extensions
             extensions = ET.SubElement(wpt, 'extensions')
+
+            # Add original extensions first if they exist
+            if poi.extensions:
+                try:
+                    original_extensions = ET.fromstring(poi.extensions)
+                    # Copy all child elements from original extensions
+                    for child in original_extensions:
+                        extensions.append(child)
+                except ET.ParseError:
+                    # If parsing fails, continue with just Garmin extensions
+                    pass
+
+            # Add Garmin extensions
             wptx1_ext = ET.SubElement(extensions, 'wptx1:WaypointExtension')
 
             # Add proximity alarm (100 meters)
