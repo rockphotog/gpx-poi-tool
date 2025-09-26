@@ -26,6 +26,13 @@ import time
 import re
 from urllib.parse import urljoin, urlparse
 
+# Optional FIT file support
+try:
+    from fitparse import FitFile
+    FIT_SUPPORT = True
+except ImportError:
+    FIT_SUPPORT = False
+
 
 @dataclass
 class POI:
@@ -101,9 +108,14 @@ class GPXManager:
         self.namespaces = {
             'gpx': 'http://www.topografix.com/GPX/1/1'
         }
+        self.fit_support = FIT_SUPPORT
     
     def read_gpx_file(self, file_path: Path) -> List[POI]:
-        """Read POIs from a GPX file"""
+        """Read POIs from a GPX or FIT file"""
+        # Detect file type and delegate to appropriate reader
+        if file_path.suffix.lower() == '.fit':
+            return self.read_fit_file(file_path)
+        
         try:
             tree = ET.parse(file_path)
             root = tree.getroot()
@@ -139,6 +151,74 @@ class GPXManager:
             return []
         except Exception as e:
             print(f"Error reading GPX file {file_path}: {e}")
+            return []
+    
+    def read_fit_file(self, file_path: Path) -> List[POI]:
+        """Read POIs from a Garmin FIT file"""
+        if not self.fit_support:
+            print(f"FIT file support not available. Install fitparse: pip install fitparse")
+            return []
+        
+        try:
+            fitfile = FitFile(str(file_path))
+            pois = []
+            
+            # Extract waypoints
+            for record in fitfile.get_messages('waypoint'):
+                name = None
+                lat = None
+                lon = None
+                
+                for field in record:
+                    if field.name == 'waypoint_name':
+                        name = field.value
+                    elif field.name == 'position_lat':
+                        lat = field.value * (180.0 / 2**31) if field.value else None
+                    elif field.name == 'position_long':
+                        lon = field.value * (180.0 / 2**31) if field.value else None
+                
+                if lat is not None and lon is not None:
+                    if not name:
+                        name = f"Waypoint_{lat:.6f}_{lon:.6f}"
+                    
+                    poi = POI(
+                        lat=lat,
+                        lon=lon, 
+                        name=name,
+                        desc="Imported from FIT file"
+                    )
+                    pois.append(poi)
+            
+            # Extract course points
+            for record in fitfile.get_messages('course_point'):
+                name = None
+                lat = None
+                lon = None
+                
+                for field in record:
+                    if field.name == 'name':
+                        name = field.value
+                    elif field.name == 'position_lat':
+                        lat = field.value * (180.0 / 2**31) if field.value else None
+                    elif field.name == 'position_long':
+                        lon = field.value * (180.0 / 2**31) if field.value else None
+                
+                if lat is not None and lon is not None:
+                    if not name:
+                        name = f"Course_Point_{lat:.6f}_{lon:.6f}"
+                    
+                    poi = POI(
+                        lat=lat,
+                        lon=lon,
+                        name=name,
+                        desc="Course point from FIT file"
+                    )
+                    pois.append(poi)
+            
+            return pois
+            
+        except Exception as e:
+            print(f"Error reading FIT file {file_path}: {e}")
             return []
     
     def write_gpx_file(self, file_path: Path, pois: List[POI]):
@@ -763,7 +843,7 @@ Examples:
     parser.add_argument(
         '-a', '--add',
         nargs='+',
-        help='GPX file(s) or pattern to add POIs from (e.g., "file.gpx" or "*.gpx")'
+        help='GPX or FIT file(s) or pattern to add POIs from (e.g., "file.gpx", "route.fit", or "*.gpx")'
     )
     
     parser.add_argument(
@@ -850,7 +930,7 @@ Examples:
                 for file_path in expanded_files:
                     path_obj = Path(file_path)
                     # Don't add the target file to itself
-                    if str(path_obj.resolve()) != target_path_str and path_obj.suffix.lower() == '.gpx':
+                    if str(path_obj.resolve()) != target_path_str and path_obj.suffix.lower() in ['.gpx', '.fit']:
                         source_files.append(path_obj)
             else:
                 # Direct file path
@@ -860,7 +940,7 @@ Examples:
                     source_files.append(path_obj)
         
         if not source_files:
-            print("Error: No valid GPX source files found")
+            print("Error: No valid GPX or FIT source files found")
             sys.exit(1)
         
         # Remove duplicates from source files list

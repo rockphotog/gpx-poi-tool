@@ -8,8 +8,9 @@ A powerful Python command-line tool for managing Points of Interest (POI) in GPX
 ## ✨ Key Features
 
 ### 📍 **POI Management**
-- **Import POIs**: Add POIs from any GPX file to your master collection
-- **Multi-file Import**: Process multiple files at once using wildcards (`*.gpx`)
+- **Import POIs**: Add POIs from GPX and FIT files to your master collection
+- **Multi-file Import**: Process multiple files at once using wildcards (`*.gpx`, `*.fit`)
+- **FIT File Support**: Extract waypoints and course points from Garmin FIT files
 - **Duplicate Detection**: Automatically detects duplicates based on:
   - Exact name matches (case-insensitive)
   - Geographic proximity (configurable distance threshold, default 50m)
@@ -69,8 +70,11 @@ pip install -r requirements.txt
 
 ### 2. **Try It Out with Sample Data**
 ```bash
-# Import all GPX files to create your master collection
+# Import all GPX and FIT files to create your master collection
 python3 poi-tool.py -t gpx/master-poi-collection.gpx -a "gpx/*.gpx" -v
+
+# Add waypoints from a Garmin FIT file (e.g., from a cycling route)
+python3 poi-tool.py -t gpx/master-poi-collection.gpx -a "activities/route.fit" -v
 
 # Export to Google Earth for visualization
 python3 poi-tool.py -t gpx/master-poi-collection.gpx --export-kml my-pois.kml
@@ -106,11 +110,12 @@ python3 poi-tool.py -t gpx/master-poi-collection.gpx --elevation-lookup --add-wa
 ### Requirements
 - Python 3.6 or higher
 - `requests` library (for elevation lookup feature)
+- `fitparse` library (for FIT file support - optional)
 
 ### Quick Start
 ```bash
-# Install the required library
-pip3 install --user requests
+# Install required libraries
+pip3 install --user requests fitparse
 
 # That's it! Start using the tool
 python3 poi-tool.py --help
