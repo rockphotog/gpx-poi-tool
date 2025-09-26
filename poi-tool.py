@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
 import math
+import glob
 
 
 @dataclass
@@ -250,6 +251,8 @@ def main():
         epilog='''
 Examples:
   poi-tool -t master-poi-collection.gpx -a new-poi.gpx
+  poi-tool -t master-poi-collection.gpx -a "*.gpx"
+  poi-tool -t master-poi-collection.gpx -a file1.gpx file2.gpx file3.gpx
   poi-tool --target master-poi-collection.gpx --add new-poi.gpx
   poi-tool -t master-poi-collection.gpx --dedupe
         '''
@@ -264,8 +267,8 @@ Examples:
     
     parser.add_argument(
         '-a', '--add',
-        type=Path,
-        help='GPX file to add POIs from'
+        nargs='+',
+        help='GPX file(s) or pattern to add POIs from (e.g., "file.gpx" or "*.gpx")'
     )
     
     parser.add_argument(
@@ -307,20 +310,65 @@ Examples:
     
     # Handle --add command
     if args.add:
-        if not args.add.exists():
-            print(f"Error: Source file {args.add} not found")
+        # Expand patterns and collect all source files
+        source_files = []
+        target_path_str = str(args.target.resolve())
+        
+        for pattern in args.add:
+            # Check if it's a glob pattern or a direct file
+            if '*' in pattern or '?' in pattern or '[' in pattern:
+                # Use glob to expand the pattern
+                expanded_files = glob.glob(pattern)
+                for file_path in expanded_files:
+                    path_obj = Path(file_path)
+                    # Don't add the target file to itself
+                    if str(path_obj.resolve()) != target_path_str and path_obj.suffix.lower() == '.gpx':
+                        source_files.append(path_obj)
+            else:
+                # Direct file path
+                path_obj = Path(pattern)
+                # Don't add the target file to itself
+                if str(path_obj.resolve()) != target_path_str:
+                    source_files.append(path_obj)
+        
+        if not source_files:
+            print("Error: No valid GPX source files found")
             sys.exit(1)
         
-        source_pois = gpx_manager.read_gpx_file(args.add)
-        if args.verbose:
-            print(f"Loaded {len(source_pois)} POIs from source file: {args.add}")
+        # Remove duplicates from source files list
+        source_files = list(set(source_files))
         
-        # Merge POIs
-        merged_pois = gpx_manager.merge_pois(target_pois, source_pois)
+        if args.verbose:
+            print(f"Processing {len(source_files)} source files:")
+            for file_path in source_files:
+                print(f"  - {file_path}")
+        
+        # Load POIs from all source files
+        all_source_pois = []
+        total_loaded = 0
+        
+        for source_file in source_files:
+            if not source_file.exists():
+                print(f"Warning: Source file {source_file} not found, skipping")
+                continue
+            
+            file_pois = gpx_manager.read_gpx_file(source_file)
+            all_source_pois.extend(file_pois)
+            total_loaded += len(file_pois)
+            
+            if args.verbose:
+                print(f"Loaded {len(file_pois)} POIs from {source_file}")
+        
+        if args.verbose:
+            print(f"Total loaded: {total_loaded} POIs from {len(source_files)} files")
+        
+        # Merge all POIs
+        merged_pois = gpx_manager.merge_pois(target_pois, all_source_pois)
         
         added_count = len(merged_pois) - len(target_pois)
-        merged_count = len(source_pois) - added_count
+        merged_count = total_loaded - added_count
         
+        print(f"Processed {len(source_files)} source files")
         print(f"Added {added_count} new POIs, merged {merged_count} duplicates")
         print(f"Total POIs in collection: {len(merged_pois)}")
         

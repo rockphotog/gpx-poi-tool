@@ -24,8 +24,14 @@ No installation required. Just ensure you have Python 3.6+ installed on your sys
 ### Basic Commands
 
 ```bash
-# Add POIs from a source file to your master collection
+# Add POIs from a single source file to your master collection
 python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx
+
+# Add POIs from ALL GPX files in the current directory (excluding the target file)
+python3 poi-tool.py -t master-poi-collection.gpx -a "*.gpx"
+
+# Add POIs from multiple specific files
+python3 poi-tool.py -t master-poi-collection.gpx -a file1.gpx file2.gpx file3.gpx
 
 # Remove duplicates from your master collection
 python3 poi-tool.py -t master-poi-collection.gpx --dedupe
@@ -37,7 +43,10 @@ python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
 ### Command Line Options
 
 - `-t, --target TARGET`: Target GPX file (your master POI collection) - **Required**
-- `-a, --add ADD`: GPX file to import POIs from
+- `-a, --add ADD [ADD ...]`: GPX file(s) or pattern to import POIs from
+  - Single file: `-a cabin.gpx`
+  - Multiple files: `-a cabin1.gpx cabin2.gpx cabin3.gpx`
+  - Wildcard pattern: `-a "*.gpx"` (processes all GPX files, excluding the target)
 - `--dedupe`: Remove duplicates from the target file
 - `--distance-threshold DISTANCE`: Distance threshold in meters for duplicate detection (default: 50.0)
 - `-v, --verbose`: Enable detailed output
@@ -46,11 +55,17 @@ python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
 ### Examples
 
 ```bash
-# Import POIs from a hiking trail file
+# Import POIs from a single hiking trail file
 python3 poi-tool.py -t master-poi-collection.gpx -a hiking-trails.gpx
 
-# Import with verbose output
-python3 poi-tool.py -t master-poi-collection.gpx -a new-cabins.gpx -v
+# Import ALL GPX files from current directory (wildcard pattern)
+python3 poi-tool.py -t master-poi-collection.gpx -a "*.gpx"
+
+# Import from multiple specific files
+python3 poi-tool.py -t master-poi-collection.gpx -a cabins.gpx trails.gpx peaks.gpx
+
+# Import with verbose output to see processing details
+python3 poi-tool.py -t master-poi-collection.gpx -a "*.gpx" -v
 
 # Clean up duplicates in your collection
 python3 poi-tool.py -t master-poi-collection.gpx --dedupe
