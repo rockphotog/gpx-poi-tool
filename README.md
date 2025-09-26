@@ -32,7 +32,7 @@ Transform your GPX collection into a beautiful Google Earth visualization:
 
 ```bash
 # Export your DNT cabin collection to Google Earth
-python3 poi-tool.py -t dnt-cabins-norway.gpx --export-kml cabins-google-earth.kml
+python3 poi-tool.py -t gpx/dnt-cabins-norway.gpx --export-kml cabins-google-earth.kml
 ```
 
 **Result**: A professionally organized KML file with:
@@ -48,37 +48,41 @@ Each POI includes rich information balloons with descriptions, coordinates, elev
 
 ## 🚀 **Quick Start for New Users**
 
-### 1. **Set Up Your Environment**
-```bash
-# Clone or download this repository
-cd gpx-poi-tool
+### 1. **Get Started (Choose Your Approach)**
 
-# Set up Python virtual environment (recommended)
+**🚀 Simple Setup (Recommended for most users)**
+```bash
+# Install the only required package
+pip3 install --user requests
+
+# You're ready to use the tool!
+python3 poi-tool.py -t gpx/master-collection.gpx --export-kml my-pois.kml
+```
+
+**🔧 Advanced Setup (For developers)**
+```bash
+# Set up isolated environment (optional but recommended for development)
 python3 -m venv venv
 source venv/bin/activate  # On macOS/Linux
-# On Windows use: venv\Scripts\activate
-
-# Install required packages
 pip install -r requirements.txt
-# Or manually: pip install requests
 ```
 
 ### 2. **Try It Out with Sample Data**
 ```bash
-# Import all GPX files in the current directory to create your master collection
-python3 poi-tool.py -t master-poi-collection.gpx -a "*.gpx" -v
+# Import all GPX files to create your master collection
+python3 poi-tool.py -t gpx/master-poi-collection.gpx -a "gpx/*.gpx" -v
 
 # Export to Google Earth for visualization
-python3 poi-tool.py -t master-poi-collection.gpx --export-kml my-pois.kml
+python3 poi-tool.py -t gpx/master-poi-collection.gpx --export-kml my-pois.kml
 
 # Export to Garmin BaseCamp format
-python3 poi-tool.py -t master-poi-collection.gpx --export-garmin-poi my-pois.csv
+python3 poi-tool.py -t gpx/master-poi-collection.gpx --export-garmin-poi my-pois.csv
 ```
 
 ### 3. **Enhance Your Collection**
 ```bash
 # Add elevation data and Garmin symbols, then optimize
-python3 poi-tool.py -t master-poi-collection.gpx --elevation-lookup --add-waypoint-symbols --garmin-optimize -v
+python3 poi-tool.py -t gpx/master-poi-collection.gpx --elevation-lookup --add-waypoint-symbols --garmin-optimize -v
 ```
 
 **Result**: You now have a professional POI collection ready for both Garmin GPS devices and Google Earth! 🎯
@@ -100,28 +104,27 @@ python3 poi-tool.py -t master-poi-collection.gpx --elevation-lookup --add-waypoi
 ## Installation
 
 ### Requirements
-- Python 3.6+ 
-- `requests` library for elevation lookup features
+- Python 3.6 or higher
+- `requests` library (for elevation lookup feature)
 
-### Setup (Recommended)
+### Quick Start
 ```bash
-# Set up a virtual environment
+# Install the required library
+pip3 install --user requests
+
+# That's it! Start using the tool
+python3 poi-tool.py --help
+```
+
+### Alternative: Virtual Environment (Optional)
+If you prefer isolated environments or work with many Python projects:
+```bash
 python3 -m venv venv
 source venv/bin/activate  # On macOS/Linux
-# On Windows use: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-### Alternative: System-wide installation
-```bash
-# Install requests in user space (recommended for macOS)
-pip3 install --user --break-system-packages requests
-
-# Alternative: Install globally (may require sudo on some systems)
-# pip3 install requests
-```
+> 💡 **Note**: Virtual environments are optional for this tool since it has only one dependency.
 
 ## Usage
 
