@@ -44,6 +44,7 @@ Examples:
   %(prog)s -t master.gpx --elevation-lookup       # Add elevation data
   %(prog)s -t master.gpx --garmin-optimize        # Optimize for Garmin
   %(prog)s -t master.gpx --export-kml out.kml     # Export to Google Earth
+  %(prog)s -t master.gpx --split                  # Split into individual POI files
         ''',
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
@@ -89,6 +90,10 @@ Examples:
                        type=Path,
                        help='Export to KML format for Google Earth')
 
+    parser.add_argument('--split',
+                       action='store_true',
+                       help='Split GPX file into individual files (one POI per file)')
+
     # Options
     parser.add_argument('-v', '--verbose',
                        action='store_true',
@@ -102,7 +107,7 @@ def validate_arguments(args) -> bool:
     # Must have at least one action
     actions = [args.add, args.dedupe, args.sync_utno, args.elevation_lookup,
                args.add_waypoint_symbols, args.garmin_optimize,
-               args.export_garmin_poi, args.export_kml]
+               args.export_garmin_poi, args.export_kml, args.split]
 
     if not any(actions):
         print("Error: Must specify at least one action (--add, --dedupe, etc.)")
@@ -247,6 +252,12 @@ def main():
         print(f"Exporting to KML format for Google Earth...")
         gpx_manager.export_to_kml(current_pois, args.export_kml, args.verbose)
         print(f"Exported to {args.export_kml}")
+
+    # Handle --split command
+    if args.split:
+        print(f"Splitting {args.target} into individual POI files...")
+        created_count = gpx_manager.split_to_individual_files(args.target, args.verbose)
+        print(f"Split complete: {created_count} individual GPX files created")
 
     # Save changes if any processing operations were performed
     if any([args.elevation_lookup, args.add_waypoint_symbols]) and not args.garmin_optimize:

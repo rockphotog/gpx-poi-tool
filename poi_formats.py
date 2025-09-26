@@ -56,20 +56,28 @@ class GPXFileHandler:
                 lat = float(wpt.get('lat') or '0')
                 lon = float(wpt.get('lon') or '0')
 
-                # Extract name
+                # Extract name - try with and without namespace
                 name_elem = wpt.find('name')
-                name = name_elem.text if name_elem is not None else ""
+                if name_elem is None:
+                    name_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}name')
+                name = name_elem.text.strip() if name_elem is not None and name_elem.text else ""
 
-                # Extract description
+                # Extract description - try with and without namespace
                 desc_elem = wpt.find('desc')
-                desc = desc_elem.text if desc_elem is not None else ""
+                if desc_elem is None:
+                    desc_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}desc')
+                desc = desc_elem.text.strip() if desc_elem is not None and desc_elem.text else ""
 
-                # Extract elevation
+                # Extract elevation - try with and without namespace
                 ele_elem = wpt.find('ele')
+                if ele_elem is None:
+                    ele_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}ele')
                 ele = float(ele_elem.text) if ele_elem is not None and ele_elem.text else None
 
-                # Extract link
+                # Extract link - try with and without namespace
                 link_elem = wpt.find('link')
+                if link_elem is None:
+                    link_elem = wpt.find('.//{http://www.topografix.com/GPX/1/1}link')
                 link = link_elem.get('href') if link_elem is not None else None
 
                 poi = POI(lat=lat, lon=lon, name=name or "", desc=desc or "", ele=ele, link=link)

@@ -165,6 +165,7 @@ python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
 - `--elevation-lookup`: Automatically add elevation data using online services
 - `--add-waypoint-symbols`: Add Garmin-compatible symbols/icons to waypoints
 - `--garmin-optimize`: Optimize GPX file structure for Garmin devices
+- `--split`: Split GPX file into individual files (one POI per file) in `single-poi-[filename]/` directory
 - `--export-garmin-poi FILE.csv`: Export to Garmin POI CSV format for BaseCamp
 - `--export-kml FILE.kml`: Export to KML format for Google Earth
 - `-v, --verbose`: Enable detailed output
@@ -190,6 +191,9 @@ python3 poi-tool.py -t master-poi-collection.gpx --dedupe
 
 # Use custom distance threshold (100 meters instead of default 50)
 python3 poi-tool.py -t master-poi-collection.gpx -a mountain-peaks.gpx --distance-threshold 100.0
+
+# Split a GPX file into individual files (one POI per file)
+python3 poi-tool.py -t turisthytter.gpx --split
 
 # Export to different formats
 python3 poi-tool.py -t master-poi-collection.gpx --export-kml google-earth.kml
@@ -233,6 +237,24 @@ The `--export-garmin-poi` feature creates CSV files for Garmin BaseCamp with:
 - **BaseCamp compatibility** for easy import
 - **Symbol assignments** based on POI type
 - **Complete metadata** including coordinates, elevation, and descriptions
+
+### Split to Individual Files
+The `--split` feature helps you share individual POIs easily by creating:
+- **Individual GPX files** with one POI per file for easy sharing
+- **Organized directory structure** in `single-poi-[filename]/` subfolder
+- **Safe filenames** based on POI names (sanitized for file systems)
+- **Preserved metadata** including coordinates, elevation, and descriptions
+
+Example:
+```bash
+# Split turisthytter.gpx into individual files
+python3 poi-tool.py -t turisthytter.gpx --split
+
+# Results in directory: single-poi-turisthytter/
+#   ├── Slivasshytta.gpx
+#   ├── Ramnabergshytta.gpx
+#   └── Kyrkjestølane.gpx
+```
 
 ## Example Workflow
 

@@ -352,3 +352,96 @@ class GPXManager:
         """Export POIs to KML format"""
         from poi_formats import ExportHandler
         ExportHandler.export_to_kml(pois, output_path, verbose)
+
+    def split_to_individual_files(self, gpx_file_path: Path, verbose: bool = False) -> int:
+        """
+        Split a GPX file into individual GPX files, one POI per file.
+
+        Args:
+            gpx_file_path: Path to the source GPX file
+            verbose: Enable verbose output
+
+        Returns:
+            Number of individual files created
+        """
+        # Read POIs from the source file
+        pois = self.read_gpx_file(gpx_file_path)
+
+        if not pois:
+            if verbose:
+                print(f"No POIs found in {gpx_file_path}")
+            return 0
+
+        # Create output directory name
+        base_name = gpx_file_path.stem  # Get filename without .gpx extension
+        output_dir = gpx_file_path.parent / f"single-poi-{base_name}"
+
+        # Create output directory
+        output_dir.mkdir(exist_ok=True)
+
+        if verbose:
+            print(f"Splitting {len(pois)} POIs from {gpx_file_path}")
+            print(f"Output directory: {output_dir}")
+
+        created_count = 0
+        skipped_count = 0
+
+        for poi in pois:
+            # Sanitize POI name for filename
+            safe_name = self._sanitize_filename(poi.name)
+
+            if not safe_name:
+                skipped_count += 1
+                if verbose:
+                    print(f"  Skipped POI with empty/invalid name: '{poi.name}'")
+                continue
+
+            # Create individual GPX file
+            output_file = output_dir / f"{safe_name}.gpx"
+
+            try:
+                # Write single POI to new GPX file
+                self.write_gpx_file(output_file, [poi])
+                created_count += 1
+
+                if verbose:
+                    print(f"  Created: {output_file.name}")
+
+            except Exception as e:
+                if verbose:
+                    print(f"  Error creating {output_file.name}: {e}")
+                skipped_count += 1
+
+        if verbose:
+            print(f"Split complete: {created_count} files created, {skipped_count} skipped")
+
+        return created_count
+
+    def _sanitize_filename(self, name: str) -> str:
+        """
+        Sanitize a POI name to be safe for use as a filename.
+
+        Args:
+            name: Original POI name
+
+        Returns:
+            Sanitized filename (without extension)
+        """
+        if not name or not name.strip():
+            return ""
+
+        # Remove or replace unsafe characters
+        import re
+
+        # Replace common problematic characters
+        sanitized = name.strip()
+        sanitized = re.sub(r'[<>:"/\\|?*]', '_', sanitized)  # Windows forbidden chars
+        sanitized = re.sub(r'[^\w\s\-_åæøÅÆØ]', '_', sanitized)  # Keep alphanumeric, spaces, Norwegian chars
+        sanitized = re.sub(r'\s+', '_', sanitized)  # Replace spaces with underscores
+        sanitized = sanitized.strip('_')  # Remove leading/trailing underscores
+
+        # Limit length (many filesystems have 255 char limits)
+        if len(sanitized) > 200:
+            sanitized = sanitized[:200]
+
+        return sanitized if sanitized else "unnamed_poi"
