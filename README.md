@@ -18,9 +18,11 @@ A powerful Python command-line tool for managing Points of Interest (POI) in GPX
 - **Deduplication**: Remove duplicates from existing GPX files
 
 ### 🔧 **Advanced Features**
-- **Elevation Lookup**: Automatically fetch elevation data using online services
+- **Elevation Lookup**: Automatically fetch elevation data using online services (Open-Elevation API)
+- **Extension Preservation**: Maintains all existing GPX metadata and extensions when adding elevation
 - **Garmin Optimization**: Optimize files specifically for Garmin GPS devices
 - **Symbol Assignment**: Add appropriate Garmin-compatible symbols based on POI type
+- **File Splitting**: Split multi-POI GPX files into individual files for easy sharing
 
 ### 📤 **Export Options**
 - **GPX Output**: Standard GPX 1.1 format for GPS devices
@@ -255,6 +257,67 @@ python3 poi-tool.py -t turisthytter.gpx --split
 #   ├── Ramnabergshytta.gpx
 #   └── Kyrkjestølane.gpx
 ```
+
+## 📊 Elevation Data
+
+### Current Implementation
+The tool uses the **Open-Elevation API** (https://open-elevation.com) for worldwide elevation data lookup. The service is:
+- ✅ **Free and reliable** for global coverage
+- ✅ **No API key required** - just works out of the box
+- ✅ **Preserves existing metadata** - only adds elevation data without modifying existing GPX extensions or attributes
+
+### Known Limitations
+⚠️ **Important**: Open-Elevation has data gaps, especially in:
+- **Northern latitudes** (including much of Norway above 60°N)
+- **Remote mountainous areas**
+- **Water bodies** (lakes, fjords, coastal areas return elevation = 0)
+- **Areas with no SRTM coverage**
+
+**Why elevation = 0?** According to Open-Elevation documentation: *"If there is no recorded elevation at the provided coordinate, sea level (0 meters) is returned."* This means **elevation = 0 often indicates "no data available"** rather than actual sea level.
+
+**Real-world example**: Even Norway's highest peak, Galdhøpiggen (2,469m), returns 0m elevation due to incomplete coverage in northern/mountainous regions.
+
+### 🇳🇴 Planned Enhancement: Kartverket Integration
+**Coming Soon**: Norwegian locations will get significantly better elevation data through integration with **Kartverket** (Norwegian Mapping Authority):
+
+- 🎯 **Superior coverage** for all Norwegian locations
+- 🏔️ **High-resolution data** from laser scanning (1m resolution)
+- 📍 **Complete coverage** including mountains, fjords, and remote areas
+- 🚀 **Automatic fallback** - Use Kartverket for Norwegian coordinates, Open-Elevation for international
+
+**Technical approach**:
+- Kartverket provides elevation data through **WCS (Web Coverage Service)** APIs
+- Free access to high-quality Digital Terrain Models (DTM)
+- Complete coverage of Norway from the national laser scanning project
+
+> 💡 **For Norwegian users**: This enhancement will resolve the current elevation data gaps for locations like mountain peaks, DNT cabins, and hiking trails.
+
+## 🔄 Recent Updates
+
+### Latest Changes (September 2025)
+
+#### ✨ **Extension Preservation Fix**
+- **Fixed**: Elevation lookup now preserves all existing GPX extensions and metadata
+- **Before**: Adding elevation would remove custom `<extensions>` tags (e.g., DNT hut metadata)
+- **After**: Elevation is added while keeping all existing data intact
+- **Impact**: Safe to use elevation lookup on files with custom metadata without data loss
+
+#### 🔧 **File Splitting Feature**
+- **New**: `--split` option to break multi-POI GPX files into individual files
+- **Use case**: Share individual POIs easily or organize large collections
+- **Output**: Creates `single-poi-[filename]/` directory with one GPX per POI
+- **Benefits**: Easier sharing, better organization, preserved metadata per POI
+
+#### 📊 **Elevation Data Analysis**
+- **Investigation**: Documented Open-Elevation API limitations for Norwegian locations
+- **Finding**: Many Norwegian mountain peaks and remote areas return elevation = 0 (no data)
+- **Solution**: Planned Kartverket integration for accurate Norwegian elevation data
+- **Documentation**: Added comprehensive elevation data section explaining limitations
+
+### Next Up
+- 🇳🇴 **Kartverket elevation integration** for Norwegian locations
+- 🔄 **Automatic fallback system** (Kartverket → Open-Elevation)
+- ⚡ **Performance improvements** for large file processing
 
 ## Example Workflow
 
