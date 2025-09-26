@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd" version="1.1" creator="poi-tool-garmin-optimized">
+    <metadata>
+        <name>POI Collection</name>
+        <desc>Garmin-optimized POI collection with 1 waypoints</desc>
+    </metadata>
+    <wpt lat="61.88406641" lon="10.01250264">
+        <name>Bjørnhollia</name>
+        <desc />
+        <ele>894.5</ele>
+        <link href="https://ut.no/hytte/101110" />
+        <extensions>
+            <gpxx:WaypointExtension>
+                <gpxx:DisplayMode>SymbolAndName</gpxx:DisplayMode>
+            </gpxx:WaypointExtension>
+        </extensions>
+    </wpt>
+</gpx>
