@@ -13,9 +13,9 @@ Features:
 - FIT file support
 
 Usage:
-    poi-tool-v2 -t master-poi-collection.gpx -a new-single-poi.gpx
-    poi-tool-v2 --target master-poi-collection.gpx --dedupe --verbose
-    poi-tool-v2 -t master.gpx --elevation-lookup --export-kml output.kml
+    poi-tool.py -t master-poi-collection.gpx -a new-single-poi.gpx
+    poi-tool.py --target master-poi-collection.gpx --dedupe --verbose
+    poi-tool.py -t master.gpx --elevation-lookup --export-kml output.kml
 """
 
 import argparse
