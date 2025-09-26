@@ -249,62 +249,7 @@ class GPXManager:
         
         return result_pois
     
-    def sync_with_ut_no(self, pois: List[POI], verbose: bool = False) -> List[POI]:
-        """Sync POI information with ut.no database"""
-        if verbose:
-            print("Syncing with ut.no database...")
-        
-        updated_pois = []
-        for poi in pois:
-            updated_poi = self._fetch_ut_no_info(poi, verbose)
-            updated_pois.append(updated_poi)
-            if verbose and updated_poi != poi:
-                print(f"Updated information for {poi.name}")
-            # Add delay to be respectful to the server
-            time.sleep(0.5)
-        
-        return updated_pois
-    
-    def _fetch_ut_no_info(self, poi: POI, verbose: bool = False) -> POI:
-        """Fetch updated information from ut.no for a single POI"""
-        if not poi.link or 'ut.no' not in poi.link:
-            return poi
-        
-        try:
-            # Extract hytte ID from ut.no URL
-            match = re.search(r'/hytte/(\d+)', poi.link)
-            if not match:
-                return poi
-            
-            hytte_id = match.group(1)
-            
-            # Note: This is a simplified example. Real ut.no API access would require
-            # proper authentication and API endpoints
-            # For now, we'll simulate with basic web scraping concepts
-            
-            headers = {
-                'User-Agent': 'GPX-POI-Tool/1.0 (Educational Use)'
-            }
-            
-            try:
-                response = requests.get(poi.link, headers=headers, timeout=10)
-                if response.status_code == 200:
-                    # This would need proper HTML parsing in a real implementation
-                    # For now, return the original POI
-                    if verbose:
-                        print(f"Verified link for {poi.name}: {poi.link}")
-                    return poi
-            except requests.RequestException:
-                if verbose:
-                    print(f"Could not fetch data for {poi.name} from {poi.link}")
-                return poi
-                
-        except Exception as e:
-            if verbose:
-                print(f"Error syncing {poi.name}: {e}")
-            return poi
-        
-        return poi
+
     
     def garmin_optimize(self, pois: List[POI]) -> List[POI]:
         """Optimize POI data for Garmin devices"""
@@ -796,7 +741,6 @@ Examples:
   poi-tool -t master-poi-collection.gpx --dedupe
   
   # Enhanced features
-  poi-tool -t master-poi-collection.gpx --sync-ut-no
   poi-tool -t master-poi-collection.gpx --elevation-lookup
   poi-tool -t master-poi-collection.gpx --add-waypoint-symbols
   poi-tool -t master-poi-collection.gpx --garmin-optimize
@@ -841,11 +785,7 @@ Examples:
         help='Enable verbose output'
     )
     
-    parser.add_argument(
-        '--sync-ut-no',
-        action='store_true',
-        help='Sync POI information with ut.no database'
-    )
+
     
     parser.add_argument(
         '--garmin-optimize',
@@ -880,9 +820,9 @@ Examples:
     args = parser.parse_args()
     
     # Validate arguments
-    if not any([args.add, args.dedupe, args.sync_ut_no, args.garmin_optimize, 
+    if not any([args.add, args.dedupe, args.garmin_optimize, 
                 args.add_waypoint_symbols, args.elevation_lookup, args.export_garmin_poi, args.export_kml]):
-        parser.error("At least one operation must be specified (--add, --dedupe, --sync-ut-no, --garmin-optimize, --add-waypoint-symbols, --elevation-lookup, --export-garmin-poi, or --export-kml)")
+        parser.error("At least one operation must be specified (--add, --dedupe, --garmin-optimize, --add-waypoint-symbols, --elevation-lookup, --export-garmin-poi, or --export-kml)")
     
     gpx_manager = GPXManager()
     
@@ -980,12 +920,6 @@ Examples:
     # Apply additional processing operations
     current_pois = target_pois if not (args.add or args.dedupe) else (merged_pois if args.add else deduplicated_pois)
     
-    # Handle --sync-ut-no command
-    if args.sync_ut_no:
-        print("Syncing with ut.no database...")
-        current_pois = gpx_manager.sync_with_ut_no(current_pois, args.verbose)
-        print("Sync completed")
-    
     # Handle --elevation-lookup command
     if args.elevation_lookup:
         print("Looking up elevation data...")
@@ -1022,7 +956,7 @@ Examples:
         print(f"Exported to {args.export_kml}")
     
     # Save changes if any processing operations were performed
-    if any([args.sync_ut_no, args.elevation_lookup, args.add_waypoint_symbols]) and not args.garmin_optimize:
+    if any([args.elevation_lookup, args.add_waypoint_symbols]) and not args.garmin_optimize:
         gpx_manager.write_gpx_file(args.target, current_pois)
         print(f"Updated {args.target} with processed data")
 

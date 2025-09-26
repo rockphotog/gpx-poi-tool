@@ -17,7 +17,6 @@ A powerful Python command-line tool for managing Points of Interest (POI) in GPX
 - **Deduplication**: Remove duplicates from existing GPX files
 
 ### 🔧 **Advanced Features**
-- **UT.no Integration**: Sync with DNT cabin database for updated information
 - **Elevation Lookup**: Automatically fetch elevation data using online services
 - **Garmin Optimization**: Optimize files specifically for Garmin GPS devices
 - **Symbol Assignment**: Add appropriate Garmin-compatible symbols based on POI type
@@ -43,7 +42,7 @@ python3 poi-tool.py -t dnt-cabins-norway.gpx --export-kml cabins-google-earth.km
 - 📷 **Scenic Areas** (magenta camera icons)
 - 🏖️ **Beaches** (yellow beach icons)
 
-Each POI includes rich information balloons with descriptions, coordinates, elevation data, and clickable links to ut.no pages.
+Each POI includes rich information balloons with descriptions, coordinates, elevation data, and clickable links.
 
 > 💡 **Try it yourself**: Download [example-google-earth.kml](example-google-earth.kml) and open it in Google Earth to see the DNT cabin collection in action!
 
@@ -102,7 +101,7 @@ python3 poi-tool.py -t master-poi-collection.gpx --elevation-lookup --add-waypoi
 
 ### Requirements
 - Python 3.6+ 
-- `requests` library for elevation lookup and ut.no sync features
+- `requests` library for elevation lookup features
 
 ### Setup (Recommended)
 ```bash
@@ -154,7 +153,7 @@ python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
   - Wildcard pattern: `-a "*.gpx"` (processes all GPX files, excluding the target)
 - `--dedupe`: Remove duplicates from the target file
 - `--distance-threshold DISTANCE`: Distance threshold in meters for duplicate detection (default: 50.0)
-- `--sync-ut-no`: Sync POI information with ut.no database for DNT cabins
+
 - `--elevation-lookup`: Automatically add elevation data using online services
 - `--add-waypoint-symbols`: Add Garmin-compatible symbols/icons to waypoints
 - `--garmin-optimize`: Optimize GPX file structure for Garmin devices
