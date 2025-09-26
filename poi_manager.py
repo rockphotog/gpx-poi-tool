@@ -289,7 +289,8 @@ class GPXManager:
                                 name=poi.name,
                                 desc=poi.desc,
                                 ele=float(elevation),
-                                link=poi.link
+                                link=poi.link,
+                                extensions=poi.extensions
                             )
                             updated_pois.append(updated_poi)
 
