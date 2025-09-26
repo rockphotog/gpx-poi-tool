@@ -4,8 +4,8 @@ GPX POI Tool - Smart Launcher
 Automatically chooses the best available interface for viewing GPX files.
 """
 
-import sys
 import subprocess
+import sys
 from pathlib import Path
 
 
@@ -54,13 +54,13 @@ def install_requirements():
     try:
         # Check if we're in a virtual environment or can install packages
         requirements_file = Path(__file__).parent / "requirements.txt"
-        
+
         if requirements_file.exists():
             print("📦 Installing requirements...")
             cmd = [sys.executable, "-m", "pip", "install", "-r",
                    str(requirements_file)]
             result = subprocess.run(cmd, capture_output=True, text=True)
-            
+
             if result.returncode == 0:
                 print("✅ Requirements installed successfully")
                 return True
@@ -70,7 +70,7 @@ def install_requirements():
         else:
             print("⚠️  No requirements.txt found")
             return True
-            
+
     except Exception as e:
         print(f"❌ Error installing requirements: {e}")
         return False
@@ -80,34 +80,34 @@ def main():
     """Main launcher logic"""
     print("🚀 GPX POI Tool Launcher")
     print("=" * 40)
-    
+
     # Check Python version
     if sys.version_info < (3, 7):
         print("❌ Python 3.7 or higher required")
         sys.exit(1)
-    
+
     # Try native GUI first if tkinter is available
     if check_tkinter_available():
         print("✅ tkinter available - trying native GUI...")
-        
+
         # Try to install requirements first
         install_requirements()
-        
+
         # Try native GUI
         if run_native_gui():
             return
-        
+
         print("\n⚠️  Native GUI failed, falling back to web viewer...")
     else:
         print("⚠️  tkinter not available - using web viewer...")
         print("💡 To use native GUI, install Python with tkinter support:")
         print("   brew install python-tk")
-    
+
     # Fall back to web viewer
     print("\n" + "=" * 40)
     if run_web_viewer():
         return
-    
+
     # If everything failed
     print("\n❌ All interfaces failed!")
     print("\n🛠️  Troubleshooting:")

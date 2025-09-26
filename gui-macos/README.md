@@ -1,6 +1,6 @@
 # GPX POI Tool - macOS GUI
 
-A modern interface for viewing and managing GPX files with Points of Interest (POIs). 
+A modern interface for viewing and managing GPX files with Points of Interest (POIs).
 
 **Two interface options available:**
 - 🖥️ **Native Desktop GUI** - Modern customtkinter interface (requires tkinter)
@@ -8,7 +8,7 @@ A modern interface for viewing and managing GPX files with Points of Interest (P
 
 ## Features
 
-- 📁 **Open GPX Files** - Browse and load GPX files 
+- 📁 **Open GPX Files** - Browse and load GPX files
 - 📊 **File Statistics** - View POI counts, elevation data, and file information
 - 📋 **Organized Display** - View POIs in a sortable table with all key information
 - 🎨 **Modern Interface** - Native macOS look and feel with dark/light mode support
