@@ -220,20 +220,23 @@ class GPXManager:
         if verbose:
             print(f"Looking up elevations for {len(pois)} POIs...")
 
-        # Filter POIs that need elevation data
-        pois_needing_elevation = [poi for poi in pois if poi.ele is None]
+        # First, clean any existing POIs with zero elevation (invalid data)
+        cleaned_pois = self._remove_zero_elevations(pois, verbose)
+        
+        # Filter POIs that need elevation data (None or removed zeros)
+        pois_needing_elevation = [poi for poi in cleaned_pois if poi.ele is None]
 
         if not pois_needing_elevation:
             if verbose:
                 print("All POIs already have elevation data")
-            return pois
+            return cleaned_pois
 
         if verbose:
             print(f"Found {len(pois_needing_elevation)} POIs without elevation data")
 
         # Process in batches to avoid overwhelming the API
         batch_size = 50
-        updated_pois = pois.copy()
+        updated_pois = cleaned_pois.copy()
 
         for i in range(0, len(pois_needing_elevation), batch_size):
             batch = pois_needing_elevation[i:i+batch_size]
@@ -278,7 +281,8 @@ class GPXManager:
                 for i, poi in enumerate(pois):
                     if i < len(results):
                         elevation = results[i].get('elevation')
-                        if elevation is not None:
+                        if elevation is not None and elevation > 0:
+                            # Only add elevation if it's greater than 0 (valid data)
                             updated_poi = POI(
                                 lat=poi.lat,
                                 lon=poi.lon,
@@ -292,7 +296,10 @@ class GPXManager:
                             if verbose:
                                 print(f"  {poi.name}: {elevation}m")
                         else:
+                            # Keep original POI without elevation (don't add invalid 0.0)
                             updated_pois.append(poi)
+                            if verbose and elevation == 0:
+                                print(f"  {poi.name}: Skipped (elevation=0, likely invalid)")
                     else:
                         updated_pois.append(poi)
 
@@ -306,6 +313,34 @@ class GPXManager:
             if verbose:
                 print(f"  Elevation lookup failed: {e}")
             return pois
+
+    def _remove_zero_elevations(self, pois: List[POI], verbose: bool = False) -> List[POI]:
+        """Remove POIs with zero elevation (typically invalid data)"""
+        cleaned_pois = []
+        removed_count = 0
+        
+        for poi in pois:
+            if poi.ele is not None and poi.ele == 0.0:
+                removed_count += 1
+                # Create new POI without the invalid elevation
+                cleaned_poi = POI(
+                    lat=poi.lat,
+                    lon=poi.lon,
+                    name=poi.name,
+                    desc=poi.desc,
+                    ele=None,  # Remove the zero elevation
+                    link=poi.link
+                )
+                cleaned_pois.append(cleaned_poi)
+                if verbose:
+                    print(f"  Removed zero elevation from: {poi.name}")
+            else:
+                cleaned_pois.append(poi)
+        
+        if verbose and removed_count > 0:
+            print(f"Cleaned {removed_count} POIs with invalid zero elevation")
+            
+        return cleaned_pois
 
     # Export methods (delegated to format handlers)
     def export_garmin_poi_csv(self, pois: List[POI], output_path: Path, verbose: bool = False):
