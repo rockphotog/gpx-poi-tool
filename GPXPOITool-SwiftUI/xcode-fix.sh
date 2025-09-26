@@ -54,7 +54,7 @@ backup_project() {
 
 validate_project() {
     print_status "Validating project file..."
-    
+
     # Check basic syntax
     if plutil -lint GPXPOITool.xcodeproj/project.pbxproj > /dev/null 2>&1; then
         print_success "Project file syntax is valid"
@@ -62,11 +62,11 @@ validate_project() {
         print_error "Project file syntax is invalid"
         return 1
     fi
-    
+
     # Check for UUID duplicates
     print_status "Checking for UUID conflicts..."
     duplicates=$(grep -o 'A[0-9]\{23\}' GPXPOITool.xcodeproj/project.pbxproj | sort | uniq -d)
-    
+
     if [ -z "$duplicates" ]; then
         print_success "No UUID conflicts found"
         return 0
@@ -79,69 +79,69 @@ validate_project() {
 
 clean_reset() {
     print_status "Resetting project to clean state..."
-    
+
     # Remove user data that might be cached
     rm -rf GPXPOITool.xcodeproj/xcuserdata
     rm -rf GPXPOITool.xcodeproj/project.xcworkspace/xcuserdata
-    
+
     # Restore original project file
     git checkout -- GPXPOITool.xcodeproj/project.pbxproj
-    
+
     print_success "Project reset to clean state"
 }
 
 fix_uuids() {
     print_status "Fixing UUID conflicts in project.pbxproj..."
-    
+
     # First, validate current state
     if ! validate_project; then
         print_warning "Project has issues, attempting to fix..."
     fi
-    
+
     # Read the current project file
     local project_file="GPXPOITool.xcodeproj/project.pbxproj"
     local temp_file=$(mktemp)
-    
+
     # Generate new unique UUIDs for the new files
     local elevation_build_uuid=$(generate_xcode_uuid)
-    local elevation_file_uuid=$(generate_xcode_uuid) 
+    local elevation_file_uuid=$(generate_xcode_uuid)
     local kml_build_uuid=$(generate_xcode_uuid)
     local kml_file_uuid=$(generate_xcode_uuid)
-    
+
     print_status "Generated new UUIDs:"
     echo "  ElevationService build: $elevation_build_uuid"
     echo "  ElevationService file:  $elevation_file_uuid"
     echo "  KMLExporter build:      $kml_build_uuid"
     echo "  KMLExporter file:       $kml_file_uuid"
-    
+
     # Add the new files to the project with safe UUIDs
     cp "$project_file" "$temp_file"
-    
+
     # Add PBXBuildFile entries
     sed "/A1000011000000000001.*POIListView.swift in Sources/a\\
 		$elevation_build_uuid /* ElevationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = $elevation_file_uuid /* ElevationService.swift */; };\\
 		$kml_build_uuid /* KMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = $kml_file_uuid /* KMLExporter.swift */; };" "$temp_file" > "${temp_file}.1"
-    
+
     # Add PBXFileReference entries
     sed "/A1000015000000000001.*GPX_POI_Tool.entitlements/a\\
 		$elevation_file_uuid /* ElevationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevationService.swift; sourceTree = \"<group>\"; };\\
 		$kml_file_uuid /* KMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLExporter.swift; sourceTree = \"<group>\"; };" "${temp_file}.1" > "${temp_file}.2"
-    
+
     # Add to Services group
     sed "/A1000008000000000001.*GPXProcessor.swift/a\\
 				$elevation_file_uuid /* ElevationService.swift */,\\
 				$kml_file_uuid /* KMLExporter.swift */," "${temp_file}.2" > "${temp_file}.3"
-    
+
     # Add to Sources build phase
     sed "/A1000001000000000001.*GPXPOIToolApp.swift in Sources/a\\
 				$elevation_build_uuid /* ElevationService.swift in Sources */,\\
 				$kml_build_uuid /* KMLExporter.swift in Sources */," "${temp_file}.3" > "${temp_file}.final"
-    
+
     # Validate the result
     if plutil -lint "${temp_file}.final" > /dev/null 2>&1; then
         cp "${temp_file}.final" "$project_file"
         print_success "Project file updated with new files"
-        
+
         # Final validation
         if validate_project; then
             print_success "Project is now healthy and ready for Xcode"
@@ -156,21 +156,21 @@ fix_uuids() {
         print_error "Generated project file is invalid, restoring original"
         git checkout -- GPXPOITool.xcodeproj/project.pbxproj
     fi
-    
+
     # Clean up temp files
     rm -f "${temp_file}"*
 }
 
 create_new_project() {
     print_status "Creating new Xcode project structure..."
-    
+
     backup_name="GPXPOITool_old_$(date +%Y%m%d_%H%M%S).xcodeproj"
     mv GPXPOITool.xcodeproj "$backup_name"
     print_status "Old project backed up as: $backup_name"
-    
+
     # Create basic project structure
     mkdir -p GPXPOITool.xcodeproj/project.xcworkspace/xcshareddata
-    
+
     # Generate fresh UUIDs for all components
     local main_group_uuid=$(generate_xcode_uuid)
     local app_group_uuid=$(generate_xcode_uuid)
@@ -178,7 +178,7 @@ create_new_project() {
     local models_group_uuid=$(generate_xcode_uuid)
     local views_group_uuid=$(generate_xcode_uuid)
     local services_group_uuid=$(generate_xcode_uuid)
-    
+
     # Generate file UUIDs
     local app_file_uuid=$(generate_xcode_uuid)
     local content_file_uuid=$(generate_xcode_uuid)
@@ -188,7 +188,7 @@ create_new_project() {
     local kml_file_uuid=$(generate_xcode_uuid)
     local map_file_uuid=$(generate_xcode_uuid)
     local list_file_uuid=$(generate_xcode_uuid)
-    
+
     # Generate build file UUIDs
     local app_build_uuid=$(generate_xcode_uuid)
     local content_build_uuid=$(generate_xcode_uuid)
@@ -198,7 +198,7 @@ create_new_project() {
     local kml_build_uuid=$(generate_xcode_uuid)
     local map_build_uuid=$(generate_xcode_uuid)
     local list_build_uuid=$(generate_xcode_uuid)
-    
+
     # Other UUIDs
     local app_product_uuid=$(generate_xcode_uuid)
     local info_plist_uuid=$(generate_xcode_uuid)
@@ -214,7 +214,7 @@ create_new_project() {
     local release_config_uuid=$(generate_xcode_uuid)
     local debug_target_uuid=$(generate_xcode_uuid)
     local release_target_uuid=$(generate_xcode_uuid)
-    
+
     # Create the new project.pbxproj with all files included
     cat > GPXPOITool.xcodeproj/project.pbxproj << EOF
 // !$*UTF8*$!

@@ -1,3 +1,43 @@
+#!/bin/bash
+
+# Simple Xcode Project Recovery
+# Creates a minimal working project that Xcode can open
+
+set -e
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+PROJECT_ROOT="/Users/espen/git/gpx-poi-tool/GPXPOITool-SwiftUI"
+cd "$PROJECT_ROOT"
+
+echo -e "${BLUE}[INFO]${NC} Creating simple working Xcode project..."
+
+# Backup existing project
+if [ -d "GPXPOITool.xcodeproj" ]; then
+    mv GPXPOITool.xcodeproj "GPXPOITool_backup_$(date +%Y%m%d_%H%M%S).xcodeproj"
+    echo -e "${GREEN}[SUCCESS]${NC} Existing project backed up"
+fi
+
+# Create basic project structure
+mkdir -p GPXPOITool.xcodeproj/project.xcworkspace/xcshareddata
+
+# Create workspace contents
+cat > GPXPOITool.xcodeproj/project.xcworkspace/contents.xcworkspacedata << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
+EOF
+
+# Create a minimal project.pbxproj with only the essential files
+# This is based on the original working project structure
+cat > GPXPOITool.xcodeproj/project.pbxproj << 'EOF'
 // !$*UTF8*$!
 {
 	archiveVersion = 1;
@@ -13,8 +53,6 @@
 		A1000007000000000001 /* GPXProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000008000000000001 /* GPXProcessor.swift */; };
 		A1000009000000000001 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000010000000000001 /* MapView.swift */; };
 		A1000011000000000001 /* POIListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000012000000000001 /* POIListView.swift */; };
-		A1000033000000000001 /* ElevationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000034000000000001 /* ElevationService.swift */; };
-		A1000035000000000001 /* KMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000036000000000001 /* KMLExporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,8 +65,6 @@
 		A1000013000000000001 /* GPX POI Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPX POI Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000014000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1000015000000000001 /* GPX_POI_Tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GPX_POI_Tool.entitlements; sourceTree = "<group>"; };
-		A1000034000000000001 /* ElevationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevationService.swift; sourceTree = "<group>"; };
-		A1000036000000000001 /* KMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMLExporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				A1000008000000000001 /* GPXProcessor.swift */,
-				A1000034000000000001 /* ElevationService.swift */,
-				A1000036000000000001 /* KMLExporter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -170,8 +204,6 @@
 				A1000003000000000001 /* ContentView.swift in Sources */,
 				A1000005000000000001 /* POI.swift in Sources */,
 				A1000007000000000001 /* GPXProcessor.swift in Sources */,
-				A1000033000000000001 /* ElevationService.swift in Sources */,
-				A1000035000000000001 /* KMLExporter.swift in Sources */,
 				A1000009000000000001 /* MapView.swift in Sources */,
 				A1000011000000000001 /* POIListView.swift in Sources */,
 				A1000001000000000001 /* GPXPOIToolApp.swift in Sources */,
@@ -394,3 +426,20 @@
 	};
 	rootObject = A1000027000000000001 /* Project object */;
 }
+EOF
+
+echo -e "${GREEN}[SUCCESS]${NC} Minimal working Xcode project created"
+echo -e "${BLUE}[INFO]${NC} Project includes the core files but NOT ElevationService.swift or KMLExporter.swift"
+echo -e "${BLUE}[INFO]${NC} Next steps:"
+echo "  1. Open GPXPOITool.xcodeproj in Xcode"
+echo "  2. Right-click on Services group -> Add Files to \"GPX POI Tool\""
+echo "  3. Add ElevationService.swift and KMLExporter.swift"
+echo "  4. Build the project (Cmd+B)"
+
+# Validate the created project
+if plutil -lint GPXPOITool.xcodeproj/project.pbxproj > /dev/null 2>&1; then
+    echo -e "${GREEN}[SUCCESS]${NC} Project file syntax is valid"
+else
+    echo -e "${RED}[ERROR]${NC} Project file syntax is invalid"
+    exit 1
+fi
