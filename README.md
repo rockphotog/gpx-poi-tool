@@ -1,10 +1,9 @@
 # GPX POI Management Tool
 
+A powerful Python command-line tool for managing Points of Interest (POI) in GPX files for Garmin GPS devices and Google Earth. This tool helps you build and maintain a master collection of POIs by importing from multiple GPX files, automatically handling duplicates, and exporting to various formats including KML for Google Earth visualization.
+
 ![GPX POI Tool - Norwegian Mountain Visualization](graphics/kart-1.png)
 *Example: DNT cabins and trails visualized in Google Earth using the KML export feature*
-
-
-A powerful Python command-line tool for managing Points of Interest (POI) in GPX files for Garmin GPS devices and Google Earth. This tool helps you build and maintain a master collection of POIs by importing from multiple GPX files, automatically handling duplicates, and exporting to various formats including KML for Google Earth visualization.
 
 ## ✨ Key Features
 
