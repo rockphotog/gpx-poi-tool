@@ -1,0 +1,25 @@
+# Build artifacts
+build/
+*.o
+*.a
+*.dylib
+GPXPOIToolNative
+GPXPOITool_debug
+GPXPOITool_release
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+temp/
+.DS_Store
+
+# Xcode user-specific files
+*.xcuserstate
+*.xcuserdatad/
+DerivedData/
+
+# Swift Package Manager
+.swiftpm/
+Package.resolved

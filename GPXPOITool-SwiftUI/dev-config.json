@@ -1,0 +1,23 @@
+{
+    "project": {
+        "name": "GPX POI Tool",
+        "version": "1.0.0",
+        "swift_version": "6.2",
+        "min_macos_version": "14.0"
+    },
+    "build": {
+        "debug_flags": ["-g", "-Onone"],
+        "release_flags": ["-O"],
+        "frameworks": [
+            "Foundation",
+            "SwiftUI", 
+            "CoreLocation",
+            "MapKit"
+        ]
+    },
+    "paths": {
+        "source": "GPX POI Tool",
+        "build": "build",
+        "logs": "logs"
+    }
+}
