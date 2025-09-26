@@ -222,7 +222,7 @@ class GPXManager:
 
         # First, clean any existing POIs with zero elevation (invalid data)
         cleaned_pois = self._remove_zero_elevations(pois, verbose)
-        
+
         # Filter POIs that need elevation data (None or removed zeros)
         pois_needing_elevation = [poi for poi in cleaned_pois if poi.ele is None]
 
@@ -318,7 +318,7 @@ class GPXManager:
         """Remove POIs with zero elevation (typically invalid data)"""
         cleaned_pois = []
         removed_count = 0
-        
+
         for poi in pois:
             if poi.ele is not None and poi.ele == 0.0:
                 removed_count += 1
@@ -336,10 +336,10 @@ class GPXManager:
                     print(f"  Removed zero elevation from: {poi.name}")
             else:
                 cleaned_pois.append(poi)
-        
+
         if verbose and removed_count > 0:
             print(f"Cleaned {removed_count} POIs with invalid zero elevation")
-            
+
         return cleaned_pois
 
     # Export methods (delegated to format handlers)

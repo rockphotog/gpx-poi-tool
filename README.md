@@ -251,3 +251,33 @@ python3 poi-tool.py -t master-poi-collection.gpx --dedupe
 
 # Your master-poi-collection.gpx now contains all unique POIs!
 ```
+
+## 🙏 Acknowledgements
+
+### Elevation Data Service
+
+- **[Open-Elevation.com](https://open-elevation.com)** - Providing free, reliable elevation data API service
+  - Created and maintained by **João Ricardo Lourenço** and contributors
+  - Open-source (GPLv2) alternative to commercial elevation APIs
+  - Built on high-quality datasets including SRTM and other open elevation sources
+  - Enables global elevation lookup with generous free tier (1,000 requests/month)
+  - [GitHub Repository](https://github.com/Jorl17/open-elevation)
+
+### Data Sources & Inspiration
+- **[Den Norske Turistforening (DNT)](https://www.dnt.no/)** - Norwegian Trekking Association
+  - Inspiration for mountain hut and hiking trail POI management
+- **[ut.no](https://ut.no/)** - Norwegian hiking and outdoor portal
+  - Rich hiking data and cabin information for Norway
+
+### Technology & Libraries
+- **Python Community** - For the excellent standard library and ecosystem
+- **[FitParse](https://github.com/dtcooper/python-fitparse)** - For FIT file support (optional dependency)
+- **[Requests](https://github.com/psf/requests)** - For reliable HTTP API communication
+
+### Development Tools
+- **[VS Code](https://code.visualstudio.com/)** - Development environment and tooling
+- **Open Source Community** - For the collaborative spirit that makes projects like this possible
+
+---
+
+*This tool was created to help outdoor enthusiasts organize and manage their GPS waypoint collections more effectively. We're grateful to all the services and communities that make this functionality possible!*
