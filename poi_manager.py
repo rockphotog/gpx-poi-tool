@@ -216,7 +216,7 @@ class GPXManager:
         return result_pois
 
     def lookup_elevations(self, pois: List[POI], verbose: bool = False) -> List[POI]:
-        """Look up elevation data for POIs using online service"""
+        """Look up elevation data for POIs using online service with robust error handling"""
         if verbose:
             print(f"Looking up elevations for {len(pois)} POIs...")
 
@@ -236,16 +236,40 @@ class GPXManager:
 
         # Process in batches to avoid overwhelming the API
         batch_size = 50
+        total_batches = (len(pois_needing_elevation) + batch_size - 1) // batch_size
         updated_pois = cleaned_pois.copy()
+        
+        # Track success/failure statistics
+        successful_elevations = 0
+        failed_batches = 0
+        total_processed = 0
 
         for i in range(0, len(pois_needing_elevation), batch_size):
             batch = pois_needing_elevation[i:i+batch_size]
+            batch_num = i // batch_size + 1
 
             if verbose:
-                print(f"Processing batch {i//batch_size + 1} ({len(batch)} POIs)...")
+                print(f"Processing batch {batch_num}/{total_batches} ({len(batch)} POIs)...")
+
+            # Count POIs in batch that had elevation before processing
+            before_count = sum(1 for poi in batch if poi.ele is not None and poi.ele > 0)
 
             # Update elevations for this batch
             batch_updated = self._lookup_elevation_batch(batch, verbose)
+
+            # Count successful elevations in this batch
+            after_count = sum(1 for poi in batch_updated if poi.ele is not None and poi.ele > 0)
+            batch_success = after_count - before_count
+
+            if batch_success == 0 and len(batch) > 0:
+                failed_batches += 1
+                if verbose:
+                    print(f"  Warning: No elevations retrieved for batch {batch_num}")
+            elif verbose and batch_success < len(batch):
+                print(f"  Partial success: {batch_success}/{len(batch)} elevations retrieved")
+
+            successful_elevations += batch_success
+            total_processed += len(batch)
 
             # Replace POIs in the main list
             for updated_poi in batch_updated:
@@ -256,64 +280,174 @@ class GPXManager:
                         updated_pois[j] = updated_poi
                         break
 
-            # Rate limiting
-            time.sleep(0.1)
+            # Adaptive rate limiting - slower if we had failures
+            if batch_success < len(batch) // 2:  # Less than 50% success rate
+                time.sleep(0.5)  # Longer delay
+            else:
+                time.sleep(0.1)  # Normal delay
+
+        # Final statistics
+        if verbose:
+            print(f"\nElevation lookup summary:")
+            print(f"  Total POIs processed: {total_processed}")
+            print(f"  Successful elevations: {successful_elevations}")
+            print(f"  Success rate: {(successful_elevations/total_processed*100):.1f}%" if total_processed > 0 else "  Success rate: 0%")
+            
+            if failed_batches > 0:
+                print(f"  Batches with failures: {failed_batches}/{total_batches}")
+                print(f"  Note: Elevation failures may be due to API limitations in remote areas")
+                
+        # Warn user if success rate is very low
+        if total_processed > 0 and successful_elevations / total_processed < 0.1:  # Less than 10% success
+            print(f"Warning: Very low elevation success rate ({successful_elevations}/{total_processed})")
+            print("This may indicate API connectivity issues or POIs in unsupported regions")
 
         return updated_pois
 
-    def _lookup_elevation_batch(self, pois: List[POI], verbose: bool = False) -> List[POI]:
-        """Look up elevation for a batch of POIs"""
-        try:
-            # Use Open-Elevation API (free service)
-            locations = [{"latitude": poi.lat, "longitude": poi.lon} for poi in pois]
+    def _lookup_elevation_batch(self, pois: List[POI], verbose: bool = False, max_retries: int = 3) -> List[POI]:
+        """Look up elevation for a batch of POIs with robust error handling and retries"""
+        locations = [{"latitude": poi.lat, "longitude": poi.lon} for poi in pois]
+        
+        # Calculate dynamic timeout based on batch size (minimum 30 seconds, +1 second per POI)
+        timeout = max(30, 30 + len(pois))
+        
+        for attempt in range(max_retries):
+            try:
+                if verbose and attempt > 0:
+                    print(f"  Retry attempt {attempt + 1}/{max_retries}...")
+                
+                # Use Open-Elevation API (free service)
+                response = requests.post(
+                    "https://api.open-elevation.com/api/v1/lookup",
+                    json={"locations": locations},
+                    timeout=timeout,
+                    headers={'User-Agent': 'GPX-POI-Tool/1.0'}
+                )
 
-            response = requests.post(
-                "https://api.open-elevation.com/api/v1/lookup",
-                json={"locations": locations},
-                timeout=30
-            )
+                if response.status_code == 200:
+                    try:
+                        elevation_data = response.json()
+                    except ValueError as e:
+                        if verbose:
+                            print(f"  API returned invalid JSON: {e}")
+                        if attempt < max_retries - 1:
+                            time.sleep(2 ** attempt)  # Exponential backoff
+                            continue
+                        return pois
+                    
+                    results = elevation_data.get('results', [])
+                    
+                    if len(results) != len(pois):
+                        if verbose:
+                            print(f"  Warning: API returned {len(results)} results for {len(pois)} POIs")
+                    
+                    updated_pois = []
+                    successful_lookups = 0
+                    
+                    for i, poi in enumerate(pois):
+                        if i < len(results):
+                            elevation = results[i].get('elevation')
+                            if elevation is not None and elevation > 0:
+                                # Only add elevation if it's greater than 0 (valid data)
+                                updated_poi = POI(
+                                    lat=poi.lat,
+                                    lon=poi.lon,
+                                    name=poi.name,
+                                    desc=poi.desc,
+                                    ele=float(elevation),
+                                    link=poi.link,
+                                    extensions=poi.extensions
+                                )
+                                updated_pois.append(updated_poi)
+                                successful_lookups += 1
 
-            if response.status_code == 200:
-                elevation_data = response.json()
-                results = elevation_data.get('results', [])
-
-                updated_pois = []
-                for i, poi in enumerate(pois):
-                    if i < len(results):
-                        elevation = results[i].get('elevation')
-                        if elevation is not None and elevation > 0:
-                            # Only add elevation if it's greater than 0 (valid data)
-                            updated_poi = POI(
-                                lat=poi.lat,
-                                lon=poi.lon,
-                                name=poi.name,
-                                desc=poi.desc,
-                                ele=float(elevation),
-                                link=poi.link,
-                                extensions=poi.extensions
-                            )
-                            updated_pois.append(updated_poi)
-
-                            if verbose:
-                                print(f"  {poi.name}: {elevation}m")
+                                if verbose:
+                                    print(f"  {poi.name}: {elevation}m")
+                            else:
+                                # Keep original POI without elevation (don't add invalid 0.0)
+                                updated_pois.append(poi)
+                                if verbose and elevation == 0:
+                                    print(f"  {poi.name}: Skipped (elevation=0, likely invalid)")
                         else:
-                            # Keep original POI without elevation (don't add invalid 0.0)
+                            # API returned fewer results than expected
                             updated_pois.append(poi)
-                            if verbose and elevation == 0:
-                                print(f"  {poi.name}: Skipped (elevation=0, likely invalid)")
+                            if verbose:
+                                print(f"  {poi.name}: No elevation data returned")
+                    
+                    if verbose and successful_lookups < len(pois):
+                        print(f"  Successfully retrieved elevation for {successful_lookups}/{len(pois)} POIs")
+                    
+                    return updated_pois
+                    
+                elif response.status_code == 429:  # Rate limited
+                    if verbose:
+                        print(f"  Rate limited (HTTP 429), waiting before retry...")
+                    if attempt < max_retries - 1:
+                        time.sleep(5 * (2 ** attempt))  # Longer backoff for rate limiting
+                        continue
                     else:
-                        updated_pois.append(poi)
+                        if verbose:
+                            print(f"  Rate limiting persists after {max_retries} attempts")
+                        return pois
+                        
+                elif response.status_code >= 500:  # Server error
+                    if verbose:
+                        print(f"  Server error (HTTP {response.status_code}), retrying...")
+                    if attempt < max_retries - 1:
+                        time.sleep(2 ** attempt)  # Exponential backoff
+                        continue
+                    else:
+                        if verbose:
+                            print(f"  Server errors persist after {max_retries} attempts")
+                        return pois
+                        
+                else:  # Other HTTP errors (4xx)
+                    if verbose:
+                        print(f"  API error (HTTP {response.status_code}): {response.text[:100]}")
+                    return pois  # Don't retry for client errors
 
-                return updated_pois
-            else:
+            except requests.exceptions.Timeout:
                 if verbose:
-                    print(f"  Elevation API error: {response.status_code}")
-                return pois
-
-        except Exception as e:
-            if verbose:
-                print(f"  Elevation lookup failed: {e}")
-            return pois
+                    print(f"  Request timeout after {timeout} seconds")
+                if attempt < max_retries - 1:
+                    timeout = min(timeout * 1.5, 120)  # Increase timeout for retry, max 2 minutes
+                    if verbose:
+                        print(f"  Increasing timeout to {timeout} seconds for retry")
+                    continue
+                else:
+                    if verbose:
+                        print(f"  Timeout persists after {max_retries} attempts")
+                    return pois
+                    
+            except requests.exceptions.ConnectionError:
+                if verbose:
+                    print(f"  Connection error - network unavailable")
+                if attempt < max_retries - 1:
+                    time.sleep(5 * (2 ** attempt))  # Longer backoff for connection issues
+                    continue
+                else:
+                    if verbose:
+                        print(f"  Connection issues persist after {max_retries} attempts")
+                    return pois
+                    
+            except requests.exceptions.RequestException as e:
+                if verbose:
+                    print(f"  Network error: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(2 ** attempt)  # Exponential backoff
+                    continue
+                else:
+                    if verbose:
+                        print(f"  Network errors persist after {max_retries} attempts")
+                    return pois
+                    
+            except Exception as e:
+                if verbose:
+                    print(f"  Unexpected error: {e}")
+                return pois  # Don't retry for unexpected errors
+        
+        # Should not reach here, but just in case
+        return pois
 
     def _remove_zero_elevations(self, pois: List[POI], verbose: bool = False) -> List[POI]:
         """Remove POIs with zero elevation (typically invalid data)"""
