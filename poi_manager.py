@@ -238,7 +238,7 @@ class GPXManager:
         batch_size = 50
         total_batches = (len(pois_needing_elevation) + batch_size - 1) // batch_size
         updated_pois = cleaned_pois.copy()
-        
+
         # Track success/failure statistics
         successful_elevations = 0
         failed_batches = 0
@@ -292,11 +292,11 @@ class GPXManager:
             print(f"  Total POIs processed: {total_processed}")
             print(f"  Successful elevations: {successful_elevations}")
             print(f"  Success rate: {(successful_elevations/total_processed*100):.1f}%" if total_processed > 0 else "  Success rate: 0%")
-            
+
             if failed_batches > 0:
                 print(f"  Batches with failures: {failed_batches}/{total_batches}")
                 print(f"  Note: Elevation failures may be due to API limitations in remote areas")
-                
+
         # Warn user if success rate is very low
         if total_processed > 0 and successful_elevations / total_processed < 0.1:  # Less than 10% success
             print(f"Warning: Very low elevation success rate ({successful_elevations}/{total_processed})")
@@ -307,15 +307,15 @@ class GPXManager:
     def _lookup_elevation_batch(self, pois: List[POI], verbose: bool = False, max_retries: int = 3) -> List[POI]:
         """Look up elevation for a batch of POIs with robust error handling and retries"""
         locations = [{"latitude": poi.lat, "longitude": poi.lon} for poi in pois]
-        
+
         # Calculate dynamic timeout based on batch size (minimum 30 seconds, +1 second per POI)
         timeout = max(30, 30 + len(pois))
-        
+
         for attempt in range(max_retries):
             try:
                 if verbose and attempt > 0:
                     print(f"  Retry attempt {attempt + 1}/{max_retries}...")
-                
+
                 # Use Open-Elevation API (free service)
                 response = requests.post(
                     "https://api.open-elevation.com/api/v1/lookup",
@@ -334,16 +334,16 @@ class GPXManager:
                             time.sleep(2 ** attempt)  # Exponential backoff
                             continue
                         return pois
-                    
+
                     results = elevation_data.get('results', [])
-                    
+
                     if len(results) != len(pois):
                         if verbose:
                             print(f"  Warning: API returned {len(results)} results for {len(pois)} POIs")
-                    
+
                     updated_pois = []
                     successful_lookups = 0
-                    
+
                     for i, poi in enumerate(pois):
                         if i < len(results):
                             elevation = results[i].get('elevation')
@@ -373,12 +373,12 @@ class GPXManager:
                             updated_pois.append(poi)
                             if verbose:
                                 print(f"  {poi.name}: No elevation data returned")
-                    
+
                     if verbose and successful_lookups < len(pois):
                         print(f"  Successfully retrieved elevation for {successful_lookups}/{len(pois)} POIs")
-                    
+
                     return updated_pois
-                    
+
                 elif response.status_code == 429:  # Rate limited
                     if verbose:
                         print(f"  Rate limited (HTTP 429), waiting before retry...")
@@ -389,7 +389,7 @@ class GPXManager:
                         if verbose:
                             print(f"  Rate limiting persists after {max_retries} attempts")
                         return pois
-                        
+
                 elif response.status_code >= 500:  # Server error
                     if verbose:
                         print(f"  Server error (HTTP {response.status_code}), retrying...")
@@ -400,7 +400,7 @@ class GPXManager:
                         if verbose:
                             print(f"  Server errors persist after {max_retries} attempts")
                         return pois
-                        
+
                 else:  # Other HTTP errors (4xx)
                     if verbose:
                         print(f"  API error (HTTP {response.status_code}): {response.text[:100]}")
@@ -418,7 +418,7 @@ class GPXManager:
                     if verbose:
                         print(f"  Timeout persists after {max_retries} attempts")
                     return pois
-                    
+
             except requests.exceptions.ConnectionError:
                 if verbose:
                     print(f"  Connection error - network unavailable")
@@ -429,7 +429,7 @@ class GPXManager:
                     if verbose:
                         print(f"  Connection issues persist after {max_retries} attempts")
                     return pois
-                    
+
             except requests.exceptions.RequestException as e:
                 if verbose:
                     print(f"  Network error: {e}")
@@ -440,12 +440,12 @@ class GPXManager:
                     if verbose:
                         print(f"  Network errors persist after {max_retries} attempts")
                     return pois
-                    
+
             except Exception as e:
                 if verbose:
                     print(f"  Unexpected error: {e}")
                 return pois  # Don't retry for unexpected errors
-        
+
         # Should not reach here, but just in case
         return pois
 
