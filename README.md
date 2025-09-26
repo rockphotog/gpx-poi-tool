@@ -1,1 +1,97 @@
-# gpx-poi-tool
+# GPX POI Management Tool
+
+A Python command-line tool for managing Points of Interest (POI) in GPX files for Garmin GPS devices. This tool helps you build and maintain a master collection of POIs by importing from multiple GPX files and automatically handling duplicates.
+
+## Features
+
+- **Import POIs**: Add POIs from any GPX file to your master collection
+- **Duplicate Detection**: Automatically detects duplicates based on:
+  - Exact name matches (case-insensitive)
+  - Geographic proximity (configurable distance threshold, default 50m)
+- **Smart Merging**: When duplicates are found, combines the best information from both POIs:
+  - Keeps the longer/more detailed name and description
+  - Preserves elevation data when available
+  - Merges coordinate data intelligently
+- **Deduplication**: Remove duplicates from existing GPX files
+- **Proper GPX Formatting**: Outputs properly formatted XML compatible with Garmin devices
+
+## Installation
+
+No installation required. Just ensure you have Python 3.6+ installed on your system.
+
+## Usage
+
+### Basic Commands
+
+```bash
+# Add POIs from a source file to your master collection
+python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx
+
+# Remove duplicates from your master collection
+python3 poi-tool.py -t master-poi-collection.gpx --dedupe
+
+# Verbose output to see what's happening
+python3 poi-tool.py -t master-poi-collection.gpx -a new-poi-file.gpx -v
+```
+
+### Command Line Options
+
+- `-t, --target TARGET`: Target GPX file (your master POI collection) - **Required**
+- `-a, --add ADD`: GPX file to import POIs from
+- `--dedupe`: Remove duplicates from the target file
+- `--distance-threshold DISTANCE`: Distance threshold in meters for duplicate detection (default: 50.0)
+- `-v, --verbose`: Enable detailed output
+- `-h, --help`: Show help message
+
+### Examples
+
+```bash
+# Import POIs from a hiking trail file
+python3 poi-tool.py -t master-poi-collection.gpx -a hiking-trails.gpx
+
+# Import with verbose output
+python3 poi-tool.py -t master-poi-collection.gpx -a new-cabins.gpx -v
+
+# Clean up duplicates in your collection
+python3 poi-tool.py -t master-poi-collection.gpx --dedupe
+
+# Use custom distance threshold (100 meters instead of default 50)
+python3 poi-tool.py -t master-poi-collection.gpx -a mountain-peaks.gpx --distance-threshold 100.0
+```
+
+## How Duplicate Detection Works
+
+The tool identifies duplicates using two methods:
+
+1. **Name Matching**: POIs with identical names (case-insensitive) are considered duplicates
+2. **Geographic Proximity**: POIs within a specified distance (default 50 meters) are considered duplicates
+
+When duplicates are found, the tool intelligently merges them by:
+- Keeping the longer, more descriptive name
+- Preserving the more detailed description
+- Using elevation data when available
+- Averaging coordinates or using the more precise location
+
+## File Format
+
+The tool works with standard GPX 1.1 format files and outputs properly formatted XML that's compatible with:
+- Garmin GPS devices
+- Most mapping software
+- GPX standard specifications
+
+## Example Workflow
+
+```bash
+# Start with an empty master collection
+python3 poi-tool.py -t master-poi-collection.gpx -a cabin1.gpx
+
+# Add more POIs from different sources
+python3 poi-tool.py -t master-poi-collection.gpx -a cabin2.gpx
+python3 poi-tool.py -t master-poi-collection.gpx -a hiking-waypoints.gpx
+python3 poi-tool.py -t master-poi-collection.gpx -a fishing-spots.gpx
+
+# Clean up any duplicates that might have been introduced
+python3 poi-tool.py -t master-poi-collection.gpx --dedupe
+
+# Your master-poi-collection.gpx now contains all unique POIs!
+```
