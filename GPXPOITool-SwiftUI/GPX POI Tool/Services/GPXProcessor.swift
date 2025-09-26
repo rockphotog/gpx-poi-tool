@@ -88,9 +88,9 @@ class GPXProcessor: ObservableObject {
         print("Fetching elevation data for \(coordinatesNeedingElevation.count) POIs...")
 
         // Fetch elevation data
-        let coordinates = coordinatesNeedingElevation.map { $0.1 }
+        let coordinates = coordinatesNeedingElevation.map { ($0.1, $0.2) }
         let elevationResults: [ElevationService.ElevationPoint]
-        
+
         do {
             elevationResults = try await elevationService.fetchElevations(for: coordinates)
         } catch {
@@ -132,7 +132,7 @@ class GPXProcessor: ObservableObject {
         guard !pois.isEmpty else { return }
 
         try KMLExporter.exportPOIs(pois, to: url)
-        
+
         print("Successfully exported \(pois.count) POIs to KML: \(url.lastPathComponent)")
     }
 
